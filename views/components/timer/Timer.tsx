@@ -3,6 +3,8 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import Animated, { useSharedValue, Easing, withTiming } from 'react-native-reanimated';
 
+import { setGenerators } from '../../../store/reducers/generatorsReducer';
+
 import TickProgressBar from './TickProgressBar';
 
 
@@ -19,27 +21,24 @@ const Timer = () => {
     const generatorKeys = Object.keys(generators);
 
   const handleGeneratorIncrements = () => {
-    const updatedGenerators = JSON.parse(JSON.stringify(generators))
+    const updatedGenerators = { ...generators }
 
-//     for (let i=0; i < generatorKeys.length; i++) {
-//       const currentGeneratorKey = generatorKeys[i]
-//       const previousGeneratorKey = generatorKeys[i - 1];
-//       const currentGenerator = updatedGenerators[currentGeneratorKey];
-//       const previousGenerator = updatedGenerators[previousGeneratorKey];
-//
-//       if (currentGenerator.totalCount > 0) {
-//         if (currentGeneratorKey === 'generatorOne') {
-//           setCurrency((prevCurrency) => ({
-//             ...prevCurrency,
-//             money: prevCurrency.money + ( currentGenerator.totalCount * ( income.money * prestigeMultiplier) )
-//           }))
-//         } else if (currenGeneratorKey === 'generatorTwo') {
-//           previousGenerator.totalCount += currentGenerator.totalCount
-//         }
-//
-//       }
-//     }
-//     setGenerators(updatedGenerators);
+    for (let i=0; i < generatorKeys.length; i++) {
+      const currentGeneratorKey = generatorKeys[i]
+      const previousGeneratorKey = generatorKeys[i - 1];
+      const currentGenerator = updatedGenerators[currentGeneratorKey];
+      const previousGenerator = updatedGenerators[previousGeneratorKey];
+
+      if (currentGenerator.totalCount > 0) {
+        if (currentGeneratorKey === 'generatorOne') {
+          dispatch(setCurrency('money', (1 * currentGenerator.totalQuantity)))
+        } else if (currentGeneratorKey === 'generatorTwo') {
+          previousGenerator.totalCount += currentGenerator.totalCount
+        }
+
+      }
+    }
+    dispatch(setGenerators(updatedGenerators));
   }
 
   const handleIncrement = () => {

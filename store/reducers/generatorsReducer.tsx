@@ -58,11 +58,17 @@ const initialState = {
 };
 
 // Action Types
+export const SET_GENERATORS = 'SET_GENERATORS';
 export const INCREMENT_GENERATOR = 'INCREMENT_GENERATOR';
 export const BUY_GENERATOR = 'BUY_GENERATOR';
 export const RESET_GENERATORS = 'RESET_GENERATORS';
 
 // Action Creators
+export const setGenerators = (updatedGenerators) => ({
+    type: SET_GENERATORS,
+    payload: { updatedGenerators },
+})
+
 export const incrementGenerator = (generatorKey, amount) => ({
     type: INCREMENT_GENERATOR,
     payload: { generatorKey, amount },
@@ -77,8 +83,10 @@ export const resetGenerators = () => ({
     type: RESET_GENERATORS
 })
 
-const generatorReducer = (state = initialState, action) => {
+const generatorsReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_GENERATORS:
+            return action.payload.updatedGenerators;
         case INCREMENT_GENERATOR:
             const generatorKey = action.payload.generatorKey;
             return {
@@ -112,4 +120,4 @@ const generatorReducer = (state = initialState, action) => {
     }
 };
 
-export default generatorReducer;
+export default generatorsReducer;
