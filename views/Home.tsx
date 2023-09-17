@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useDispatch } from 'react-redux';
@@ -6,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { resetGenerators } from '../store/reducers/generatorsReducer';
 
 import GeneratorsScreen from './screens/GeneratorsScreen';
+import Timer from './components/timer/Timer';
 
 const BottomTab = createBottomTabNavigator();
 
