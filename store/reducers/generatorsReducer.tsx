@@ -54,16 +54,7 @@ const generators = {
 }
 
 const initialState = {
-    generatorOne: {
-        name: 'Generator 1',
-        totalQuantity: 0,
-        purchasedQuantity: 0,
-    },
-    generatorTwo: {
-        name: 'Generator 2',
-        totalQuantity: 0,
-        purchasedQuantity: 0,
-    }
+    generators
 };
 
 // Action Types
@@ -107,10 +98,15 @@ const generatorReducer = (state = initialState, action) => {
                 }
             };
         case RESET_GENERATORS:
-            return {
-                generatorOne: generators.generatorOne,
-                generatorTwo: generators.generatorTwo
+            const resetState = {};
+            for (const key in generators) {
+                if (generators.hasOwnProperty(key)) {
+                    resetState[key] = {
+                        ...generators[key]
+                    };
+                }
             }
+            return resetState;
         default:
             return state;
     }
