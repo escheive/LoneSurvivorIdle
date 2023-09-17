@@ -9,13 +9,11 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import Home from './views/Home';
-import Timer from './views/components/timer/Timer';
 
 function App(): JSX.Element {
 
   return (
     <View style={styles.container}>
-        <Timer />
         <Home />
     </View>
   );

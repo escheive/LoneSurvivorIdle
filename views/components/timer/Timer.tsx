@@ -9,6 +9,7 @@ import TickProgressBar from './TickProgressBar';
 const Timer = () => {
     const dispatch = useDispatch();
     const generators = useSelector((state) => state.generatorsReducer);
+    const currencies = useSelector((state) => state.currenciesReducer);
     const [tickSpeed, setTickSpeed] = useState(5000);
     const [income, setIncome] = useState(1);
 

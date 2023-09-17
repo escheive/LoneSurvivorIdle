@@ -3,9 +3,11 @@ import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import generatorsReducer from './reducers/generatorsReducer';
+import currencyReducer from './reducers/currencyReducer';
 
 const rootReducer = combineReducers({
     generatorsReducer,
+    currencyReducer,
 })
 
 const persistConfig = {
