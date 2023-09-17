@@ -1,9 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import HomeScreen from './screens/HomeScreen';
-
-import
+import GeneratorsScreen from './screens/GeneratorsScreen';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -12,8 +10,8 @@ const Home = () => {
         <NavigationContainer>
             <BottomTab.Navigator>
                 <BottomTab.Screen
-                    name="Home"
-                    component={HomeScreen}
+                    name="Generators"
+                    component={GeneratorsScreen}
                 />
             </BottomTab.Navigator>
         </NavigationContainer>
