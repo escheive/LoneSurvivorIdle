@@ -8,10 +8,10 @@ import Animated, {
   Easing
 } from 'react-native-reanimated';
 
-const TickProgressBar = ({ progress, totalIncome, tickSpeed }) => {
+const TickProgressBar = ({ progress }) => {
 
     const animatedStyles = useAnimatedStyle(() => ({
-      width: tickSpeed > 100 ? `${progress * 100}%` : '100%',
+      width: `${progress * 100}%`,
     }));
 
     return (
@@ -19,7 +19,7 @@ const TickProgressBar = ({ progress, totalIncome, tickSpeed }) => {
           <View style={styles.progressBar}>
               <Animated.View style={[styles.innerBar, animatedStyles]} />
               <View style={styles.incomeContainer}>
-                <Text style={styles.incomeText}>{totalIncome}</Text>
+                <Text style={styles.incomeText}>1</Text>
               </View>
           </View>
         </View>

@@ -7,21 +7,24 @@ import Header from '../components/Header';
 import { generatorCosts } from '../../data/formulas/generatorFormulas';
 
 const GeneratorsScreen = () => {
-    const generators = useSelector(state => state.generatorsReducer);
-    const generatorsKeys = useMemo(() => Object.keys(generators), [generators]);
+    const generators = useSelector((state) => state.generatorsReducer.generators);
+    const generatorKeys = Object.keys(generators);
 
     return (
         <View>
             <Header />
             <ScrollView>
                 <Text>Home</Text>
-                {generatorsKeys.map((key) => (
-                    <Generator
-                        key={key}
-                        generatorKey={key}
-                        generatorCostFormula={generatorCosts[key]}
-                    />
-                ))}
+                {generatorKeys.map((key) => {
+
+                    return (
+                        <Generator
+                            key={key}
+                            generatorKey={key}
+                            generatorCost={generatorCosts[key]}
+                        />
+                    )
+                })}
             </ScrollView>
         </View>
     )

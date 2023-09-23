@@ -1,16 +1,20 @@
 import React, { useEffect, useContext } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { View, Text } from 'react-native';
+
+import { setCurrency } from '../../../store/reducers/currencyReducer';
 
 import { formatNumber } from '../../../utils/helperFunctions';
 
 const CurrencyHeader = () => {
-  const currencies = useSelector((state) => state.currencyReducer);
+  const dispatch = useDispatch();
+  const money = useSelector((state) => state.currencyReducer.money);
+  const prestigePoints = useSelector((state) => state.currencyReducer.prestigePoints);
 
   return (
     <View>
-      <Text>${formatNumber((currencies.money).toFixed(2))}</Text>
-      <Text>Prestige Points: {formatNumber((currencies.prestigePoints).toFixed(2))}</Text>
+      <Text>${formatNumber(money)}</Text>
+      <Text>Prestige Points: {formatNumber(prestigePoints)}</Text>
     </View>
   )
 }

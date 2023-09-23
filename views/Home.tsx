@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useDispatch } from 'react-redux';
 
 import { resetGenerators } from '../store/reducers/generatorsReducer';
+import { resetCurrency, setCurrency } from '../store/reducers/currencyReducer';
 
 import GeneratorsScreen from './screens/GeneratorsScreen';
 import Timer from './components/timer/Timer';
@@ -13,10 +14,15 @@ const BottomTab = createBottomTabNavigator();
 
 const Home = () => {
     const dispatch = useDispatch();
+//     dispatch(setCurrency('money', 10))
+//             dispatch(setCurrency('prestigePoints', 10))
 
     useEffect(() => {
-//         dispatch(resetGenerators());
-    })
+        dispatch(resetGenerators());
+//         dispatch(resetCurrency('money'))
+
+    }, [])
+
     return (
         <NavigationContainer>
             <BottomTab.Navigator>

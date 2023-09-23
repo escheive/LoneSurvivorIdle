@@ -3,25 +3,26 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import Animated, { useSharedValue, Easing, withTiming } from 'react-native-reanimated';
 
-import { setGenerators } from '../../../store/reducers/generatorsReducer';
-
 import TickProgressBar from './TickProgressBar';
+
+import { setCurrency } from '../../../store/reducers/currencyReducer';
+import { setGenerators, incrementGenerator, incrementGenerators } from '../../../store/reducers/generatorsReducer';
+
 
 
 const Timer = () => {
-    const dispatch = useDispatch();
-    const generators = useSelector((state) => state.generatorsReducer);
-    const currencies = useSelector((state) => state.currenciesReducer);
-    const [tickSpeed, setTickSpeed] = useState(5000);
-    const [income, setIncome] = useState(1);
+  const dispatch = useDispatch();
+  const [tickSpeed, setTickSpeed] = useState(2000);
+  const income = 1;
+  const [progress, setProgress] = useState(0);
+  const animationRef = useRef(0);
+  const generators = useSelector(state => state.generatorsReducer);
+  const money = useSelector((state) => state.currencyReducer.money);
+  const generatorKeys = Object.keys(generators);
 
-    const [progress, setProgress] = useState(0);
-    const animationRef = useRef(0);
 
-    const generatorKeys = Object.keys(generators);
-
-  const handleGeneratorIncrements = () => {
-    const updatedGenerators = { ...generators }
+  const handleGeneratorIncrements = async () => {
+    const updatedGenerators = { ...generators };
 
     for (let i=0; i < generatorKeys.length; i++) {
       const currentGeneratorKey = generatorKeys[i]
@@ -29,47 +30,41 @@ const Timer = () => {
       const currentGenerator = updatedGenerators[currentGeneratorKey];
       const previousGenerator = updatedGenerators[previousGeneratorKey];
 
-      if (currentGenerator.totalCount > 0) {
+      if (currentGenerator.totalQuantity > 0) {
         if (currentGeneratorKey === 'generatorOne') {
-          dispatch(setCurrency('money', (1 * currentGenerator.totalQuantity)))
-        } else if (currentGeneratorKey === 'generatorTwo') {
-          previousGenerator.totalCount += currentGenerator.totalCount
+          await dispatch(setCurrency('money', money + currentGenerator.totalQuantity))
+        } else {
+            dispatch(incrementGenerators(generators, generatorKeys))
+//           dispatch(incrementGenerator(previousGeneratorKey, currentGenerator.totalQuantity + currentGenerator.totalQuantity))
         }
 
       }
     }
-    dispatch(setGenerators(updatedGenerators));
   }
-
-  const handleIncrement = () => {
-
-    // handleCrystalIncrements();
-    handleGeneratorIncrements();
-  };
 
     const startTickProgressBar = useCallback(() => {
         let startTime: number;
         const animate = (time) => {
-            if (!startTime) {
-                startTime = time;
-            }
-            const elapsedTime = time - startTime;
-            const progress = Math.min(elapsedTime / tickSpeed, 1)
-            setProgress(progress);
-            if ( progress === 1 ) {
-                handleTickEnd();
-                startTime = 0;
-            } else {
-                animationRef.current = requestAnimationFrame(animate);
-            }
-        };
+          if (!startTime) {
+            startTime = time;
+          }
+          const elapsedTime = time - startTime;
+          const progress = Math.min(elapsedTime / tickSpeed, 1)
+          setProgress(progress);
+          if ( progress === 1 ) {
+            handleTickEnd();
+            startTime = 0;
+          } else {
             animationRef.current = requestAnimationFrame(animate);
+          }
+        };
+        animationRef.current = requestAnimationFrame(animate);
     }, [tickSpeed]);
 
     const handleTickEnd = () => {
         setProgress(0);
         startTickProgressBar();
-        handleIncrement();
+        handleGeneratorIncrements();
     }
 
     useEffect(() => {
@@ -85,7 +80,7 @@ const Timer = () => {
         <View style={styles.timerContainer}>
             <TickProgressBar
               progress={progress}
-              totalIncome={(income.money * generators.generatorOne.totalCount)}
+              totalIncome={1}
               tickSpeed={tickSpeed}
             />
         </View>
@@ -99,6 +94,5 @@ const styles = StyleSheet.create({
         width: '100%',
         marginTop: 16,
         alignItems: 'center',
-        height: 50,
     },
 });
