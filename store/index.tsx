@@ -5,10 +5,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import generatorsReducer from './reducers/generatorsReducer';
 import currencyReducer from './reducers/currencyReducer';
+import currencySlice from './reducers/currencySlice';
+import generatorsSlice from './reducers/generatorsSlice';
 
 const rootReducer = combineReducers({
-    generatorsReducer,
-    currencyReducer,
+    generators: generatorsSlice,
+    currency: currencySlice
 })
 
 const persistConfig = {

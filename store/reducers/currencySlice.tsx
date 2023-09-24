@@ -35,7 +35,7 @@ export const currencySlice = createSlice({
 })
 
 // Export various actions for the slice
-export const { incrementCurrency } = currencySlice.actions;
+export const { incrementCurrency, resetCurrency } = currencySlice.actions;
 // export method for useAppSelector to pull the data in the slice
 export const selectCurrency = (state: RootState) => state.currency;
 // export the currency reducer itself

@@ -4,7 +4,7 @@ import { generatorsObject, crystalsObject } from '../../data/generators';
 
 // Define a type for our generatorsSlice state
 interface GeneratorsState {
-  generators: object
+  generators: generatorsObject
 }
 
 const initialState: GeneratorsState =  {
@@ -47,8 +47,9 @@ export const generatorsSlice = createSlice({
   }
 })
 
+// Export various actions for the slice
 export const { incrementGenerator, buyGenerator } = generatorsSlice.actions;
-
+// export method for useAppSelector to pull the data in the slice
 export const selectGenerators = (state: RootState) => state.generators.generators;
-
+// export the currency reducer itself
 export default generatorsSlice.reducer;
