@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
-  withRepeat,
-  Easing
+  interpolate,
 } from 'react-native-reanimated';
 
 const TickProgressBar = ({ progress }) => {
 
     const animatedStyles = useAnimatedStyle(() => ({
-      width: `${progress * 100}%`,
+      width: `${interpolate(progress, [0,1], [0,100])}%`,
     }));
 
     return (
