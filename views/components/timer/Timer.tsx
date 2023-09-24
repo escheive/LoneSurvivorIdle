@@ -74,40 +74,6 @@ const Timer = () => {
     }
   }
 
-    const startTickProgressBar = useCallback(() => {
-        let startTime: number;
-        const animate = (time) => {
-          if (!startTime) {
-            startTime = time;
-          }
-          const elapsedTime = time - startTime;
-          const progress = Math.min(elapsedTime / tickSpeed, 1)
-          setProgress(progress);
-          if ( progress === 1 ) {
-            handleTickEnd();
-            startTime = 0;
-          } else {
-            animationRef.current = requestAnimationFrame(animate);
-          }
-        };
-        animationRef.current = requestAnimationFrame(animate);
-    }, [tickSpeed]);
-
-//     const handleTickEnd = () => {
-//         setProgress(0);
-//         startTickProgressBar();
-//         handleGeneratorIncrements();
-//     }
-
-    useEffect(() => {
-//         startTickProgressBar();
-        return () => {
-          if (animationRef.current) {
-            cancelAnimationFrame(animationRef.current);
-          }
-        }
-    }, []);
-
     return (
         <View style={styles.timerContainer}>
             <TickProgressBar
