@@ -17,31 +17,32 @@ export const generatorsSlice = createSlice({
   initialState,
   reducers: {
     // Use the `PayloadAction` type to declare the contents of `action.payload`
-    incrementGenerators: (state, action: PayloadAction<{ currentTickState: object, prestigeMultiplier: number, currentCrystals: object }>) => {
-      const { currentTickState, prestigeMultiplier, currentCrystals } = action.payload;
-      const generatorKeys = Object.keys(state.generators)
-      for(let i=0; i < generatorKeys.length; i++) {
-        const currentGeneratorKey = generatorKeys[i]
-        const previousGeneratorKey = generatorKeys[i - 1];
-        const currentGenerator = state.generators[currentGeneratorKey];
-        const previousGenerator = state.generators[previousGeneratorKey];
-
-        if (currentGenerator.totalCount > 0) {
-            previousGenerator.totalCount += Math.floor( currentTickState.ticksPerTick * currentGenerator.totalCount * prestigeMultiplier * (0.5 ** currentCrystals.greenCrystal.totalCount))
-        }
-      }
-    },
+//     incrementGenerators: (state, action: PayloadAction<{ currentTickState: object, prestigeMultiplier: number, currentCrystals: object }>) => {
+//       const { currentTickState, prestigeMultiplier, currentCrystals } = action.payload;
+//       const generatorKeys = Object.keys(state.generators)
+//       for(let i=0; i < generatorKeys.length; i++) {
+//         const currentGeneratorKey = generatorKeys[i]
+//         const previousGeneratorKey = generatorKeys[i - 1];
+//         const currentGenerator = state.generators[currentGeneratorKey];
+//         const previousGenerator = state.generators[previousGeneratorKey];
+//
+//         if (currentGenerator.totalCount > 0) {
+//             previousGenerator.totalCount += Math.floor( currentTickState.ticksPerTick * currentGenerator.totalCount * prestigeMultiplier * (0.5 ** currentCrystals.greenCrystal.totalCount))
+//         }
+//       }
+//     },
     incrementGenerator: (state, action: PayloadAction<{ generatorKey: string, value: number }>) => {
       const { generatorKey, value } = action.payload;
       if (state.hasOwnProperty(generatorKey)) {
-        state[generatorKey].totalCount += value
+        state[generatorKey].totalQuantity += value
       }
     },
     buyGenerator: (state, action: PayloadAction<{ generatorKey: string, value: number }>) => {
       const { generatorKey, value } = action.payload;
+      console.log(generatorKey, value)
       if (state.generators.hasOwnProperty(generatorKey)) {
-        state.generators[generatorKey].purchased += value
-        state.generators[generatorKey].totalCount += value
+        state.generators[generatorKey].purchasedQuantity += value
+        state.generators[generatorKey].totalQuantity += value
       }
     }
   }

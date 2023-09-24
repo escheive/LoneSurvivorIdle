@@ -1,5 +1,5 @@
 // Initial object with all of the generators data
-const generatorsObject = {
+export const generatorsObject = {
     generatorOne: {
         name: 'Generator 1',
         totalQuantity: 0,

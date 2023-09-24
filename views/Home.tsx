@@ -18,7 +18,7 @@ const Home = () => {
 //             dispatch(setCurrency('prestigePoints', 10))
 
     useEffect(() => {
-        dispatch(resetGenerators());
+//         dispatch(resetGenerators());
 //         dispatch(resetCurrency('money'))
 
     }, [])
