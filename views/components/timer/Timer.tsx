@@ -6,10 +6,9 @@ import Animated, { useSharedValue, Easing, withTiming } from 'react-native-reani
 
 import TickProgressBar from './TickProgressBar';
 
-import { selectGenerators } from '../../../store/reducers/generatorsSlice';
+import { selectGenerators, incrementGenerator, resetGenerators } from '../../../store/reducers/generatorsSlice';
 import { selectCurrency, incrementCurrency } from '../../../store/reducers/currencySlice';
 import { setCurrency } from '../../../store/reducers/currencyReducer';
-import { setGenerators, incrementGenerator, incrementGenerators } from '../../../store/reducers/generatorsReducer';
 
 
 
@@ -20,6 +19,7 @@ const Timer = () => {
   const [progress, setProgress] = useState(0);
   const animationRef = useRef(0);
   const generators = useAppSelector(selectGenerators);
+  const updatedGeneratorsRef = useRef();
   const money = useAppSelector(selectCurrency);
   const generatorKeys = Object.keys(generators);
   let startTime: number;
@@ -37,6 +37,7 @@ const Timer = () => {
         if ( elapsedTime >= tickSpeed ) {
           startTime = time;
           setProgress(1)
+//           dispatch(resetGenerators())
           handleGeneratorIncrements();
         } else {
           const progress = elapsedTime / 1000;
@@ -53,26 +54,26 @@ const Timer = () => {
 
 
   const handleGeneratorIncrements = () => {
-    const updatedGenerators = { ...generators };
-
     for (let i=0; i < generatorKeys.length; i++) {
       const currentGeneratorKey = generatorKeys[i]
       const previousGeneratorKey = generatorKeys[i - 1];
-      const currentGenerator = updatedGenerators[currentGeneratorKey];
-      const previousGenerator = updatedGenerators[previousGeneratorKey];
+      const currentGenerator = updatedGeneratorsRef.current[currentGeneratorKey];
+      const previousGenerator = updatedGeneratorsRef.current[previousGeneratorKey]
 
-      if (currentGenerator.totalQuantity > 0) {
+      if (generators[currentGeneratorKey].totalQuantity > 0) {
         if (currentGeneratorKey === 'generatorOne') {
           dispatch(incrementCurrency({ currencyType: 'money', value: currentGenerator.totalQuantity }))
+        } else {
+//           dispatch(incrementGenerators(updatedGenerators, generatorKeys))
+          dispatch(incrementGenerator({ generatorKey: previousGeneratorKey, value: currentGenerator.totalQuantity }))
         }
-//         } else {
-//             dispatch(incrementGenerators(generators, generatorKeys))
-// //           dispatch(incrementGenerator(previousGeneratorKey, currentGenerator.totalQuantity + currentGenerator.totalQuantity))
-//         }
-
       }
-    }
-  }
+    };
+  };
+
+  useEffect(() => {
+    updatedGeneratorsRef.current = generators;
+  }, [generators]);
 
     return (
         <View style={styles.timerContainer}>

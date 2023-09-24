@@ -33,8 +33,8 @@ export const generatorsSlice = createSlice({
 //     },
     incrementGenerator: (state, action: PayloadAction<{ generatorKey: string, value: number }>) => {
       const { generatorKey, value } = action.payload;
-      if (state.hasOwnProperty(generatorKey)) {
-        state[generatorKey].totalQuantity += value
+      if (state.generators.hasOwnProperty(generatorKey)) {
+        state.generators[generatorKey].totalQuantity += value
       }
     },
     buyGenerator: (state, action: PayloadAction<{ generatorKey: string, value: number }>) => {
@@ -44,12 +44,15 @@ export const generatorsSlice = createSlice({
         state.generators[generatorKey].purchasedQuantity += value
         state.generators[generatorKey].totalQuantity += value
       }
-    }
+    },
+    resetGenerators: () => {
+      return initialState;
+    },
   }
 })
 
 // Export various actions for the slice
-export const { incrementGenerator, buyGenerator } = generatorsSlice.actions;
+export const { incrementGenerator, buyGenerator, resetGenerators } = generatorsSlice.actions;
 // export method for useAppSelector to pull the data in the slice
 export const selectGenerators = (state: RootState) => state.generators.generators;
 // export the currency reducer itself
