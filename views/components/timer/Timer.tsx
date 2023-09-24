@@ -15,7 +15,7 @@ import { setGenerators, incrementGenerator, incrementGenerators } from '../../..
 
 const Timer = () => {
   const dispatch = useAppDispatch();
-  const [tickSpeed, setTickSpeed] = useState(2000);
+  const [tickSpeed, setTickSpeed] = useState(1000);
   const income = 1;
   const [progress, setProgress] = useState(0);
   const animationRef = useRef(0);

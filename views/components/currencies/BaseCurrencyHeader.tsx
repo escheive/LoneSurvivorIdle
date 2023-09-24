@@ -14,8 +14,8 @@ const CurrencyHeader = () => {
 
   return (
     <View>
-      <Text>${formatNumber(currency.money)}</Text>
-      <Text>Prestige Points: {formatNumber(currency.prestigePoints)}</Text>
+      <Text>${formatNumber(currency.money.toFixed(2))}</Text>
+      <Text>Prestige Points: {formatNumber(currency.prestigePoints.toFixed(2))}</Text>
     </View>
   )
 }
