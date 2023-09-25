@@ -17,20 +17,6 @@ export const generatorsSlice = createSlice({
   initialState,
   reducers: {
     // Use the `PayloadAction` type to declare the contents of `action.payload`
-//     incrementGenerators: (state, action: PayloadAction<{ currentTickState: object, prestigeMultiplier: number, currentCrystals: object }>) => {
-//       const { currentTickState, prestigeMultiplier, currentCrystals } = action.payload;
-//       const generatorKeys = Object.keys(state.generators)
-//       for(let i=0; i < generatorKeys.length; i++) {
-//         const currentGeneratorKey = generatorKeys[i]
-//         const previousGeneratorKey = generatorKeys[i - 1];
-//         const currentGenerator = state.generators[currentGeneratorKey];
-//         const previousGenerator = state.generators[previousGeneratorKey];
-//
-//         if (currentGenerator.totalCount > 0) {
-//             previousGenerator.totalCount += Math.floor( currentTickState.ticksPerTick * currentGenerator.totalCount * prestigeMultiplier * (0.5 ** currentCrystals.greenCrystal.totalCount))
-//         }
-//       }
-//     },
     incrementGenerator: (state, action: PayloadAction<{ generatorKey: string, value: number }>) => {
       const { generatorKey, value } = action.payload;
       if (state.generators.hasOwnProperty(generatorKey)) {

@@ -12,14 +12,14 @@ import {
 } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import generatorsReducer from './reducers/generatorsReducer';
-import currencyReducer from './reducers/currencyReducer';
 import currencySlice from './reducers/currencySlice';
 import generatorsSlice from './reducers/generatorsSlice';
+import craftingSlice from './reducers/craftingSlice';
 
 const rootReducer = combineReducers({
+    currency: currencySlice,
     generators: generatorsSlice,
-    currency: currencySlice
+    crafting: craftingSlice,
 })
 
 const persistConfig = {
