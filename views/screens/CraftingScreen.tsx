@@ -6,6 +6,7 @@ const CraftingScreen = () => {
         <ScrollView>
             <Text>CraftingScreen</Text>
             <View>
+
             </View>
         </ScrollView>
     )
