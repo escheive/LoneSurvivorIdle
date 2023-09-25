@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 
 const CraftingScreen = () => {
     return (
-        <View>
+        <ScrollView>
             <Text>CraftingScreen</Text>
-        </View>
+            <View>
+            </View>
+        </ScrollView>
     )
 }
 

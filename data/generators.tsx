@@ -1,52 +1,52 @@
 // Initial object with all of the generators data
 export const generatorsObject = {
     generatorOne: {
-        name: 'Generator 1',
+        name: `Scrapyard`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
     generatorTwo: {
-        name: 'Generator 2',
+        name: `Scrap Processor`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
     generatorThree: {
-        name: 'Generator 3',
+        name: `Scrap Aggregator`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
     generatorFour: {
-        name: 'Generator 4',
+        name: `Resource Refinery`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
     generatorFive: {
-        name: 'Generator 5',
+        name: `Resource Amplifier`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
     generatorSix: {
-        name: 'Generator 6',
+        name: `Material Fabricator`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
     generatorSeven: {
-        name: 'Generator 7',
+        name: `Material Synthesizer`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
     generatorEight: {
-        name: 'Generator 8',
+        name: `Tech Salvager`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
     generatorNine: {
-        name: 'Generator 9',
+        name: `Tech Innovator`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
     generatorTen: {
-        name: 'Generator 10',
+        name: `Innovation Nexus`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     }
