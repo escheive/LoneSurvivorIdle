@@ -60,7 +60,7 @@ const Timer = () => {
       const currentGenerator = updatedGeneratorsRef.current[currentGeneratorKey];
       const previousGenerator = updatedGeneratorsRef.current[previousGeneratorKey]
 
-      if (generators[currentGeneratorKey].totalQuantity > 0) {
+      if (updatedGeneratorsRef.current[currentGeneratorKey].totalQuantity > 0) {
         if (currentGeneratorKey === 'generatorOne') {
           dispatch(incrementCurrency({ currencyType: 'money', value: currentGenerator.totalQuantity }))
         } else {
