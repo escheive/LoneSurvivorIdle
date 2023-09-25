@@ -11,7 +11,9 @@ const Navigation = () => {
 
     return (
         <NavigationContainer>
-            <BottomTab.Navigator>
+            <BottomTab.Navigator
+                screenOptions={{ headerShown: false }}
+            >
                 <BottomTab.Screen
                     name="Generators"
                     component={GeneratorsScreen}
