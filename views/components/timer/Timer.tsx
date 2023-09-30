@@ -8,7 +8,7 @@ import TickProgressBar from './TickProgressBar';
 
 import { selectGenerators, incrementGenerator, resetGenerators } from '../../../store/reducers/generatorsSlice';
 import { selectCrafting, resetCrafting } from '../../../store/reducers/craftingSlice';
-import { selectCurrency, incrementCurrency } from '../../../store/reducers/currencySlice';
+import { selectCurrency, incrementCurrency, resetCurrency } from '../../../store/reducers/currencySlice';
 
 
 
@@ -19,9 +19,12 @@ const Timer = () => {
   const [progress, setProgress] = useState(0);
   const animationRef = useRef(0);
   const generators = useAppSelector(selectGenerators);
-  const updatedGeneratorsRef = useRef();
-  const money = useAppSelector(selectCurrency);
   const generatorKeys = Object.keys(generators);
+  const updatedGeneratorsRef = useRef();
+  const craftingProjects = useAppSelector(selectCrafting);
+  const craftingProjectKeys = Object.keys(craftingProjects);
+  const updatedCraftingProjectsRef = useRef();
+  const money = useAppSelector(selectCurrency);
   let startTime: number;
 
   const gameLoop = useGameLoop({
@@ -37,6 +40,7 @@ const Timer = () => {
         if ( elapsedTime >= tickSpeed ) {
           startTime = time;
           setProgress(1)
+//           dispatch(resetCurrency());
 //           dispatch(resetCrafting())
 //           dispatch(resetGenerators())
           handleGeneratorIncrements();
@@ -59,14 +63,18 @@ const Timer = () => {
       const currentGeneratorKey = generatorKeys[i]
       const previousGeneratorKey = generatorKeys[i - 1];
       const currentGenerator = updatedGeneratorsRef.current[currentGeneratorKey];
-      const previousGenerator = updatedGeneratorsRef.current[previousGeneratorKey]
+      const previousGenerator = updatedGeneratorsRef.current[previousGeneratorKey];
+      const applicableCraftingProjectKey = craftingProjectKeys[i];
+      const applicableCraftingProject = updatedCraftingProjectsRef.current[applicableCraftingProjectKey];
+
+      const totalGeneratorProduction = currentGenerator.totalQuantity * Math.max(1.1 ** applicableCraftingProject.totalCrafted, 1);
 
       if (updatedGeneratorsRef.current[currentGeneratorKey].totalQuantity > 0) {
         if (currentGeneratorKey === 'generatorOne') {
-          dispatch(incrementCurrency({ currencyType: 'money', value: currentGenerator.totalQuantity }))
+          dispatch(incrementCurrency({ currencyType: 'money', value: totalGeneratorProduction }))
         } else {
 //           dispatch(incrementGenerators(updatedGenerators, generatorKeys))
-          dispatch(incrementGenerator({ generatorKey: previousGeneratorKey, value: currentGenerator.totalQuantity }))
+          dispatch(incrementGenerator({ generatorKey: previousGeneratorKey, value: totalGeneratorProduction }))
         }
       }
     };
@@ -74,7 +82,8 @@ const Timer = () => {
 
   useEffect(() => {
     updatedGeneratorsRef.current = generators;
-  }, [generators]);
+    updatedCraftingProjectsRef.current = craftingProjects;
+  }, [generators, craftingProjects]);
 
     return (
         <View style={styles.timerContainer}>

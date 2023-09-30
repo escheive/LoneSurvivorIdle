@@ -16,8 +16,8 @@ const CraftingProject = ({ craftingProjectKey }) => {
 
   const handleCraftProject = () => {
 
-    if (project && currency.money >= 1000) {
-      dispatch(incrementCurrency({ currencyType: 'money', value: -1000 }))
+    if (project && currency.money >= 100) {
+      dispatch(incrementCurrency({ currencyType: 'money', value: -100 }))
       dispatch(incrementCraftingProject({ craftingProjectKey: craftingProjectKey, value: 1 }))
 
       // setUpgradeCost((prevUpgradeCost) => generatorCost(generator.purchasedQuantity))
@@ -33,7 +33,7 @@ const CraftingProject = ({ craftingProjectKey }) => {
       <Text>{project.name} LvL{formatNumber(project.totalCrafted)}</Text>
       <Text>Increases the output of {project.appliesTo} by 10%</Text>
       <Text>Current Bonus: x{formatNumber((1.1 ** project.totalCrafted).toFixed(2))}</Text>
-      <Button onPress={handleCraftProject} title={`Buy ${project.name} \$1000 }`}/>
+      <Button onPress={handleCraftProject} title={`Buy ${project.name} \$100`}/>
     </View>
 
   )

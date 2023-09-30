@@ -28,8 +28,8 @@ export const currencySlice = createSlice({
         state[currencyType] += value
       }
     },
-    resetCurrency: (state) => {
-      state = initialState;
+    resetCurrency: () => {
+      return initialState;
     },
   }
 })
