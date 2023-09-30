@@ -30,9 +30,9 @@ const CraftingProject = ({ craftingProjectKey }) => {
 
   return (
     <View style={styles.generatorContainer}>
-      <Text>{project.name} LvL{formatNumber(project.crafted)}</Text>
-      <Text>Increases the output of {project.affects} by 10%</Text>
-      <Text>Current Bonus: x{formatNumber((1.1 ** project.crafted).toFixed(2))}</Text>
+      <Text>{project.name} LvL{formatNumber(project.totalCrafted)}</Text>
+      <Text>Increases the output of {project.appliesTo} by 10%</Text>
+      <Text>Current Bonus: x{formatNumber((1.1 ** project.totalCrafted).toFixed(2))}</Text>
       <Button onPress={handleCraftProject} title={`Buy ${project.name} \$1000 }`}/>
     </View>
 
