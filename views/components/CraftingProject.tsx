@@ -3,10 +3,10 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useAppSelector, useAppDispatch } from '../../utils/hooks';
 
-import { incrementCurrency, selectCurrency } from '../store/reducers/currencySlice';
-import { incrementCraftingProject, selectCrafting } from '../store/reducers/craftingSlice';
+import { incrementCurrency, selectCurrency } from '../../store/reducers/currencySlice';
+import { incrementCraftingProject, selectCrafting } from '../../store/reducers/craftingSlice';
 
-import {formatNumber} from '../utils/helpers';
+import { formatNumber } from '../../utils/helperFunctions';
 
 const CraftingProject = ({key, craftingProjectKey}) => {
   const dispatch = useAppDispatch();

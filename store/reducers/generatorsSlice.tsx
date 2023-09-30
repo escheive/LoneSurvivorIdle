@@ -25,7 +25,6 @@ export const generatorsSlice = createSlice({
     },
     buyGenerator: (state, action: PayloadAction<{ generatorKey: string, value: number }>) => {
       const { generatorKey, value } = action.payload;
-      console.log(generatorKey, value)
       if (state.generators.hasOwnProperty(generatorKey)) {
         state.generators[generatorKey].purchasedQuantity += value
         state.generators[generatorKey].totalQuantity += value

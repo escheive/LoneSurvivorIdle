@@ -1,4 +1,4 @@
-const craftingProjects = {
+export const craftingProjects = {
     scrapCompressor: {
         id: 0,
         name: `Scrap Compressor`,

@@ -5,15 +5,23 @@ import { useAppSelector } from '../../utils/hooks';
 import { selectCrafting } from '../../store/reducers/craftingSlice';
 
 import ScreenWithBackButton from '../components/ScreenWithBackButton';
+import CraftingProject from '../components/CraftingProject';
 
 const CraftingScreen = () => {
+    const craftingProjects = useAppSelector(selectCrafting);
+    console.log(craftingProjects)
+    const craftingProjectsKeys = Object.keys(craftingProjects);
+
     return (
         <ScreenWithBackButton>
             <ScrollView>
                 <Text>CraftingScreen</Text>
-                <View>
-
-                </View>
+                {craftingProjectsKeys.map((project) => (
+                    <CraftingProject
+                        key={project}
+                        craftingProjectKey={project}
+                    />
+                ))}
             </ScrollView>
         </ScreenWithBackButton>
     )

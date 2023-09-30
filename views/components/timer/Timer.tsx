@@ -7,8 +7,8 @@ import Animated, { useSharedValue, Easing, withTiming } from 'react-native-reani
 import TickProgressBar from './TickProgressBar';
 
 import { selectGenerators, incrementGenerator, resetGenerators } from '../../../store/reducers/generatorsSlice';
+import { selectCrafting, resetCrafting } from '../../../store/reducers/craftingSlice';
 import { selectCurrency, incrementCurrency } from '../../../store/reducers/currencySlice';
-import { setCurrency } from '../../../store/reducers/currencyReducer';
 
 
 
@@ -37,6 +37,7 @@ const Timer = () => {
         if ( elapsedTime >= tickSpeed ) {
           startTime = time;
           setProgress(1)
+//           dispatch(resetCrafting())
 //           dispatch(resetGenerators())
           handleGeneratorIncrements();
         } else {
