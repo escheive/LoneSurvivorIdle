@@ -9,6 +9,11 @@ const capitalizeString = (string) => {
 export { capitalizeString };
 
 const formatNumber = (number: number) => {
+  number = Number(number);
+  if (isNaN(number)) {
+    return 'NaN';
+  };
+
   if (number < 1e3) {
     return number.toString();
   } else if (number < 1e6) {
@@ -33,6 +38,8 @@ const formatNumber = (number: number) => {
     return (number / 1e30).toFixed(2) + 'n';
   } else if (number < 1e36) {
     return (number / 1e33).toFixed(2) + 'd';
+  } else if (number > 1e36) {
+    return number.toExponential(2).replace('+', '');
   } else {
     return number
   }
