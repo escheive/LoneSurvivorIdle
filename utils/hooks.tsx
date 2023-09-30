@@ -32,9 +32,9 @@ export const useGameLoop = (options = {}) => {
     timing.current.lag += timing.current.delta;
     timing.current.last = time;
 
-    while (timing.current.lag >= step) {
-      timing.current.lag -= step;
-      onUpdate(step, timing.current.total);
+    while (timing.current.lag >= options.step) {
+      timing.current.lag -= options.step;
+      onUpdate(options.step, timing.current.total, timing.current);
       numberOfUpdates.current++;
       if (numberOfUpdates.current >= maxUpdates) {
         onPanic();

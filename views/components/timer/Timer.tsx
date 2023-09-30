@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useContext, useCallback } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Button } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
 import { useAppDispatch, useAppSelector, useGameLoop } from '../../../utils/hooks';
 import Animated, { useSharedValue, Easing, withTiming } from 'react-native-reanimated';
 
@@ -25,32 +24,38 @@ const Timer = () => {
   const craftingProjectKeys = Object.keys(craftingProjects);
   const updatedCraftingProjectsRef = useRef();
   const money = useAppSelector(selectCurrency);
-  let startTime: number;
+//   let startTime: number;
+
+  const lerp = (v1, v2, p) => {
+    return v1 * (1 - p) + v2 * p;
+  };
 
   const gameLoop = useGameLoop({
-      step: 1000 / 30,
+      step: 1000,
       maxUpdates: 300,
-      onUpdate: (step, time, totalTime) => {
-        if (!startTime) {
-          startTime = time;
-        }
-        const elapsedTime = time - startTime;
-        const progress = Math.min(elapsedTime / tickSpeed, 1)
-        setProgress(progress);
-        if ( elapsedTime >= tickSpeed ) {
-          startTime = time;
-          setProgress(1)
+      onUpdate: (step, time, timing) => {
+//         if (!startTime) {
+//           startTime = time;
+//         }
+//         const elapsedTime = time - startTime;
+        const elapsedTime = time - timing.last;
+//         const progress = Math.floor(elapsedTime / tickSpeed)
+//         setProgress(progress);
+        if (elapsedTime >= tickSpeed) {
+//           startTime = time;
+//           setProgress(0)
 //           dispatch(resetCurrency());
 //           dispatch(resetCrafting())
 //           dispatch(resetGenerators())
           handleGeneratorIncrements();
         } else {
           const progress = elapsedTime / 1000;
-          setProgress(progress);
+//           setProgress(progress);
         }
       },
       onRender: (interpolation) => {
-
+        const interpolatedProgress = lerp(0, 1, interpolation)
+        setProgress(interpolatedProgress);
       },
       onPanic: () => {
 

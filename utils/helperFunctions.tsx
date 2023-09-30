@@ -1,4 +1,4 @@
-const capitalizeString = (string) => {
+export const capitalizeString = (string) => {
     if (typeof string === 'string') {
         return string.charAt(0).toUpperCase() + string.slice(1);
     } else if (typeof string === 'object' && string !== null) {
@@ -6,10 +6,9 @@ const capitalizeString = (string) => {
     }
 }
 
-export { capitalizeString };
-
-const formatNumber = (number: number) => {
+export const formatNumber = (number: number) => {
   number = Number(number);
+
   if (isNaN(number)) {
     return 'NaN';
   };
@@ -43,6 +42,5 @@ const formatNumber = (number: number) => {
   } else {
     return number
   }
-}
+};
 
-export { formatNumber };
