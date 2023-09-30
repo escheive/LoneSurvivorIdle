@@ -1,14 +1,18 @@
 import React from 'react';
 import { ScrollView, View, Text } from 'react-native';
 
+import ScreenWithBackButton from '../components/ScreenWithBackButton';
+
 const CraftingScreen = () => {
     return (
-        <ScrollView>
-            <Text>CraftingScreen</Text>
-            <View>
+        <ScreenWithBackButton>
+            <ScrollView>
+                <Text>CraftingScreen</Text>
+                <View>
 
-            </View>
-        </ScrollView>
+                </View>
+            </ScrollView>
+        </ScreenWithBackButton>
     )
 }
 
