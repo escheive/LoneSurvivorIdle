@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, View, Text } from 'react-native';
 
-import ScreenWithBackButton from '../components/utility/ScreenWithBackButton';
+import ScreenWithBackButton from '../components/ScreenWithBackButton';
 
 const MissionsScreen = () => {
     return (
