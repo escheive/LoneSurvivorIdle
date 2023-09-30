@@ -14,7 +14,6 @@ const GeneratorsScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Header />
             <ScrollView>
                 {generatorKeys.map((key) => {
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import Header from '../views/components/Header';
 import GeneratorsScreen from '../views/screens/GeneratorsScreen';
 import WastelandNavigator from './WastelandNavigator';
 
@@ -11,6 +12,7 @@ const Navigation = () => {
 
     return (
         <NavigationContainer>
+            <Header />
             <BottomTab.Navigator
                 screenOptions={{ headerShown: false }}
             >

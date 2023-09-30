@@ -92,10 +92,10 @@ const Timer = () => {
               totalIncome={1}
               tickSpeed={tickSpeed}
             />
-            <Button onPress={gameLoop.start} title='start' />
-            <Button onPress={gameLoop.stop} title='stop' />
-            <Button onPress={gameLoop.resume} title='resume' />
-            <Button onPress={gameLoop.pause} title='pause' />
+            <View style={styles.timerButtonsContainer}>
+                <Button onPress={gameLoop.start} title='start' />
+                <Button onPress={gameLoop.stop} title='stop' />
+            </View>
         </View>
     )
 }
@@ -107,5 +107,8 @@ const styles = StyleSheet.create({
         width: '100%',
         marginTop: 16,
         alignItems: 'center',
+    },
+    timerButtonsContainer: {
+        flexDirection: 'row',
     },
 });
