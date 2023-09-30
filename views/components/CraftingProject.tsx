@@ -8,7 +8,7 @@ import { incrementCraftingProject, selectCrafting } from '../../store/reducers/c
 
 import { formatNumber } from '../../utils/helperFunctions';
 
-const CraftingProject = ({key, craftingProjectKey}) => {
+const CraftingProject = ({ craftingProjectKey }) => {
   const dispatch = useAppDispatch();
   const currency = useAppSelector(selectCurrency);
   const craftingProjects = useAppSelector(selectCrafting)

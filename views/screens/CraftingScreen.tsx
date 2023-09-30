@@ -9,7 +9,6 @@ import CraftingProject from '../components/CraftingProject';
 
 const CraftingScreen = () => {
     const craftingProjects = useAppSelector(selectCrafting);
-    console.log(craftingProjects)
     const craftingProjectsKeys = Object.keys(craftingProjects);
 
     return (
