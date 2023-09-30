@@ -16,7 +16,7 @@ export const useGameLoop = (options = {}) => {
 
   const {
     tickSpeed = 1000,
-    step = 1000/60,
+    step = 1000,
     maxUpdates = 300,
     onUpdate = () => {},
     onRender = () => {},

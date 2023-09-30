@@ -34,24 +34,10 @@ const Timer = () => {
       step: 1000,
       maxUpdates: 300,
       onUpdate: (step, time, timing) => {
-//         if (!startTime) {
-//           startTime = time;
-//         }
-//         const elapsedTime = time - startTime;
-        const elapsedTime = time - timing.last;
-//         const progress = Math.floor(elapsedTime / tickSpeed)
-//         setProgress(progress);
-        if (elapsedTime >= tickSpeed) {
-//           startTime = time;
-//           setProgress(0)
+        handleGeneratorIncrements();
 //           dispatch(resetCurrency());
 //           dispatch(resetCrafting())
 //           dispatch(resetGenerators())
-          handleGeneratorIncrements();
-        } else {
-          const progress = elapsedTime / 1000;
-//           setProgress(progress);
-        }
       },
       onRender: (interpolation) => {
         const interpolatedProgress = lerp(0, 1, interpolation)
