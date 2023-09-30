@@ -25,7 +25,7 @@ const Generator = ({ generatorKey, generatorCost }) => {
 
   return (
     <View style={styles.generatorContainer}>
-      <Text>{generator.name} x{formatNumber(generator.totalQuantity.toFixed(2))}</Text>
+      <Text>{generator.name} x{formatNumber(Math.round(generator.totalQuantity))}</Text>
       <Button onPress={handleBuyGenerator} title={`Buy ${generator.name} \$${formatNumber(upgradeCost.toFixed(2))}`} />
     </View>
   )
