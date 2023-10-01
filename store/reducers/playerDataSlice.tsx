@@ -19,7 +19,7 @@ export const playerDataSlice = createSlice({
   reducers: {
     // Use the `PayloadAction` type to declare the contents of `action.payload`
     setLastOnlineTimestamp: (state) => {
-        state.lastOnlineTimestamp = performance.now();
+        state.lastOnlineTimestamp = Date.now();
     },
     resetPlayerData: () => {
       return initialState;

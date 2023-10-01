@@ -20,8 +20,9 @@ export const missionsSlice = createSlice({
     // Use the `PayloadAction` type to declare the contents of `action.payload`
     // Action to start missions and log time they were initiated
     startMission: (state, action: PayloadAction<{ missionKey }>) => {
+        const { missionKey } = action.payload;
         // Use provided mission key to grab the specific mission we want
-        const missionToStart = state.mission[missionKey];
+        const missionToStart = state.missions[missionKey];
         // Validate the mission key exists
         if (state.missions.hasOwnProperty(missionKey)) {
             // Start mission if startTime value is null
@@ -35,10 +36,11 @@ export const missionsSlice = createSlice({
     },
     // Action to increment the missions level by 1 when a mission is completed
     incrementMission: (state, action: PayloadAction<{ missionKey }>) => {
-      // Validate the mission before changing state then incrementing level by 1
-      if (state.missions.hasOwnProperty(missionKey)) {
-        state.missions[missionKey].level += 1
-      }
+        const { missionKey } = action.payload;
+        // Validate the mission before changing state then incrementing level by 1
+        if (state.missions.hasOwnProperty(missionKey)) {
+            state.missions[missionKey].level += 1
+        }
     },
     // Action to reset missionsSlice
     resetMissions: () => {

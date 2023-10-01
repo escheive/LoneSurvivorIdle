@@ -14,10 +14,7 @@ const MissionComponent = ({ missions, missionKey }) => {
   const mission = missions[missionKey];
 
   const handleMissionStart = () => {
-
-    if (mission.startTime === null) {
       dispatch(startMission({ missionKey: missionKey }))
-    }
   }
 
   useEffect(() => {
@@ -27,6 +24,9 @@ const MissionComponent = ({ missions, missionKey }) => {
   return (
     <View style={styles.generatorContainer}>
       <Text>{mission.name} LvL{formatNumber(mission.level)}</Text>
+      {mission.startTime !== null ? (
+      <Text>{mission.startTime}</Text>
+      ) : null}
       <Button onPress={handleMissionStart} title={`Start Mission`}/>
     </View>
 
