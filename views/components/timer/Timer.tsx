@@ -35,12 +35,17 @@ const Timer = () => {
     return v1 * (1 - p) + v2 * p;
   };
 
+  const handleMissionsProgress = (currentTime) => {
+    
+  }
+
   const gameLoop = useGameLoop({
       step: 1000,
       maxUpdates: 300,
-      onUpdate: (step, time, timing) => {
+      onUpdate: (currentTime) => {
         handleGeneratorIncrements(generatorKeys, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch)
         dispatch(setLastOnlineTimestamp());
+        handleMissionsProgress(currentTime);
 //           dispatch(resetCurrency());
 //           dispatch(resetCrafting())
 //           dispatch(resetGenerators())

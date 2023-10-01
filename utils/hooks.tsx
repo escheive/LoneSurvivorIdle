@@ -11,7 +11,7 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export const useGameLoop = (options = {}) => {
   const [state, setState] = useState('STOPPED');
   const frameRef = useRef(null);
-  const timing = useRef({ last: null, total: 0, delta: 0, lag: 0});
+  const timing = useRef({ last: null, total: 0, delta: 0, lag: 0, current: 0 });
   const numberOfUpdates = useRef(0);
 
   const {
@@ -31,10 +31,11 @@ export const useGameLoop = (options = {}) => {
     timing.current.total += timing.current.delta;
     timing.current.lag += timing.current.delta;
     timing.current.last = time;
+    timing.current.current = performance.now();
 
     while (timing.current.lag >= options.step) {
       timing.current.lag -= options.step;
-      onUpdate(options.step, timing.current.total, timing.current);
+      onUpdate(timing.current.current);
       numberOfUpdates.current++;
       if (numberOfUpdates.current >= maxUpdates) {
         onPanic();
