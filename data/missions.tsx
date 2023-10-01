@@ -1,4 +1,4 @@
-export const missions = {
+export const missionsObject = {
     scoutSettlementLocations: {
         id: 1,
         level: 0,

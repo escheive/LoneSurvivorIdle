@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
-import { missions } from '../../data/missions';
+import { missionsObject } from '../../data/missions';
 
 // Define a type for our missionsSlice state
 interface MissionsState {
-  missions: missions
+  missions: missionsObject
 }
 
 // Initial state for missionsSlice reducer is going to our missions object imported at the top
 const initialState: MissionsState =  {
-  missions: missions
+  missions: missionsObject
 }
 
 export const missionsSlice = createSlice({

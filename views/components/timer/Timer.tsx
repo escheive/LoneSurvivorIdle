@@ -6,9 +6,10 @@ import Animated, { useSharedValue, Easing, withTiming } from 'react-native-reani
 import TickProgressBar from './TickProgressBar';
 import OfflineGainsPopup from '../OfflineGainsPopup';
 
-import { selectGenerators, incrementGenerator, resetGenerators } from '../../../store/reducers/generatorsSlice';
-import { selectCrafting, resetCrafting } from '../../../store/reducers/craftingSlice';
-import { selectCurrency, incrementCurrency, resetCurrency } from '../../../store/reducers/currencySlice';
+import { selectGenerators, incrementGenerator } from '../../../store/reducers/generatorsSlice';
+import { selectCrafting } from '../../../store/reducers/craftingSlice';
+import { selectMissions } from '../../../store/reducers/missionsSlice';
+import { selectCurrency, incrementCurrency } from '../../../store/reducers/currencySlice';
 import { selectPlayerData, setLastOnlineTimestamp } from '../../../store/reducers/playerDataSlice';
 
 import { handleGeneratorIncrements, calculateOfflineGains } from '../../../utils/gameLogic';
@@ -26,6 +27,7 @@ const Timer = () => {
   const craftingProjects = useAppSelector(selectCrafting);
   const craftingProjectKeys = Object.keys(craftingProjects);
   const updatedCraftingProjectsRef = useRef();
+  const missions = useAppSelector(selectMissions);
   const money = useAppSelector(selectCurrency);
   const playerData = useAppSelector(selectPlayerData);
   const [showPopup, setShowPopup] = useState(true);
@@ -36,7 +38,7 @@ const Timer = () => {
   };
 
   const handleMissionsProgress = (currentTime) => {
-    
+
   }
 
   const gameLoop = useGameLoop({
