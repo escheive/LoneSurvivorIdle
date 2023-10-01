@@ -12,7 +12,9 @@ const OfflineGainsPopup = ({ message, isVisible, onClose }) => {
       onRequestClose={() => onClose()}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text>{message}</Text>
+          {message.map((generatorGains) => (
+            <Text>{generatorGains}</Text>
+          ))}
           <TouchableOpacity
             style={styles.closeButton}
             onPress={() => onClose()}>

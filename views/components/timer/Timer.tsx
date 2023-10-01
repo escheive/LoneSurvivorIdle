@@ -29,7 +29,7 @@ const Timer = () => {
   const money = useAppSelector(selectCurrency);
   const playerData = useAppSelector(selectPlayerData);
   const [showPopup, setShowPopup] = useState(true);
-  const [popupMessage, setPopupMessage] = useState('');
+  const [popupMessage, setPopupMessage] = useState([]);
 
   const lerp = (v1, v2, p) => {
     return v1 * (1 - p) + v2 * p;
