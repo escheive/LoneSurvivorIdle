@@ -8,7 +8,7 @@ import TickProgressBar from './TickProgressBar';
 import { selectGenerators, incrementGenerator, resetGenerators } from '../../../store/reducers/generatorsSlice';
 import { selectCrafting, resetCrafting } from '../../../store/reducers/craftingSlice';
 import { selectCurrency, incrementCurrency, resetCurrency } from '../../../store/reducers/currencySlice';
-import { selectPlayerData } from '../../../store/reducers/playerDataSlice';
+import { selectPlayerData, setLastOnlineTimestamp } from '../../../store/reducers/playerDataSlice';
 
 import { handleGeneratorIncrements } from '../../../utils/gameLogic';
 
@@ -36,7 +36,7 @@ const Timer = () => {
       step: 1000,
       maxUpdates: 300,
       onUpdate: (step, time, timing) => {
-        handleGeneratorIncrements(generatorKeys, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch)
+        handleGeneratorIncrements(generatorKeys, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch, 1)
 //           dispatch(resetCurrency());
 //           dispatch(resetCrafting())
 //           dispatch(resetGenerators())
@@ -56,18 +56,22 @@ const Timer = () => {
   }, [generators, craftingProjects]);
 
     useEffect(() => {
-      // When app starts, grab last saved timestamp
-      const savedTimestamp = playerData.lastOnlineTimestamp;
-      // Get current timestamp
-      const currentTimestamp = Date.now();
+        // When app starts, grab last saved timestamp
+        const savedTimestamp = playerData.lastOnlineTimestamp;
+        // Get current timestamp
+        const currentTimestamp = Date.now();
 
-      if (savedTimestamp) {
-          // Calculate duration of offline time in milliseconds
-          const offlineDuration = currentTimestamp - savedTimestamp;
+        if (savedTimestamp && savedTimestamp !== null) {
+            // Calculate duration of offline time in milliseconds
+            const offlineDuration = currentTimestamp - savedTimestamp;
+            // Calculate how many ticks are equal to offline duration
+            const offlineTicks = Math.min(offlineDuration / tickSpeed);
 
-          // Calculate all gains based on the offline duration
-  //         const offlineResourceGains = calculateResourceGains(offlineDuration)
-      }
+            // Calculate all gains based on the offline duration
+            handleGeneratorIncrements(generatorKeys, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch, offlineTicks)
+        } else {
+             dispatch(setLastOnlineTimestamp())
+        }
     }, [])
 
     return (
