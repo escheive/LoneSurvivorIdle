@@ -40,6 +40,7 @@ const Timer = () => {
       maxUpdates: 300,
       onUpdate: (step, time, timing) => {
         handleGeneratorIncrements(generatorKeys, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch)
+        dispatch(setLastOnlineTimestamp());
 //           dispatch(resetCurrency());
 //           dispatch(resetCrafting())
 //           dispatch(resetGenerators())
