@@ -8,6 +8,7 @@ import TickProgressBar from './TickProgressBar';
 import { selectGenerators, incrementGenerator, resetGenerators } from '../../../store/reducers/generatorsSlice';
 import { selectCrafting, resetCrafting } from '../../../store/reducers/craftingSlice';
 import { selectCurrency, incrementCurrency, resetCurrency } from '../../../store/reducers/currencySlice';
+import { selectPlayerData } from '../../../store/reducers/playerDataSlice';
 
 import { handleGeneratorIncrements } from '../../../utils/gameLogic';
 
@@ -25,7 +26,7 @@ const Timer = () => {
   const craftingProjectKeys = Object.keys(craftingProjects);
   const updatedCraftingProjectsRef = useRef();
   const money = useAppSelector(selectCurrency);
-//   let startTime: number;
+  const playerData = useAppSelector(selectPlayerData);
 
   const lerp = (v1, v2, p) => {
     return v1 * (1 - p) + v2 * p;
@@ -36,7 +37,6 @@ const Timer = () => {
       maxUpdates: 300,
       onUpdate: (step, time, timing) => {
         handleGeneratorIncrements(generatorKeys, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch)
-//         handleGeneratorIncrements();
 //           dispatch(resetCurrency());
 //           dispatch(resetCrafting())
 //           dispatch(resetGenerators())
@@ -50,33 +50,25 @@ const Timer = () => {
       },
     });
 
-
-//   const handleGeneratorIncrements = () => {
-//     for (let i=0; i < generatorKeys.length; i++) {
-//       const currentGeneratorKey = generatorKeys[i]
-//       const previousGeneratorKey = generatorKeys[i - 1];
-//       const currentGenerator = updatedGeneratorsRef.current[currentGeneratorKey];
-//       const previousGenerator = updatedGeneratorsRef.current[previousGeneratorKey];
-//       const applicableCraftingProjectKey = craftingProjectKeys[i];
-//       const applicableCraftingProject = updatedCraftingProjectsRef.current[applicableCraftingProjectKey];
-//
-//       const totalGeneratorProduction = currentGenerator.totalQuantity * Math.max(1.1 ** applicableCraftingProject.totalCrafted, 1);
-//
-//       if (updatedGeneratorsRef.current[currentGeneratorKey].totalQuantity > 0) {
-//         if (currentGeneratorKey === 'generatorOne') {
-//           dispatch(incrementCurrency({ currencyType: 'money', value: totalGeneratorProduction }))
-//         } else {
-// //           dispatch(incrementGenerators(updatedGenerators, generatorKeys))
-//           dispatch(incrementGenerator({ generatorKey: previousGeneratorKey, value: totalGeneratorProduction }))
-//         }
-//       }
-//     };
-//   };
-
   useEffect(() => {
     updatedGeneratorsRef.current = generators;
     updatedCraftingProjectsRef.current = craftingProjects;
   }, [generators, craftingProjects]);
+
+    useEffect(() => {
+      // When app starts, grab last saved timestamp
+      const savedTimestamp = playerData.lastOnlineTimestamp;
+      // Get current timestamp
+      const currentTimestamp = Date.now();
+
+      if (savedTimestamp) {
+          // Calculate duration of offline time in milliseconds
+          const offlineDuration = currentTimestamp - savedTimestamp;
+
+          // Calculate all gains based on the offline duration
+  //         const offlineResourceGains = calculateResourceGains(offlineDuration)
+      }
+    }, [])
 
     return (
         <View style={styles.timerContainer}>
