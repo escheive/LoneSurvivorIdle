@@ -63,7 +63,7 @@ const Timer = () => {
         // When app starts, grab last saved timestamp
         const savedTimestamp = playerData.lastOnlineTimestamp;
         // Get current timestamp
-        const currentTimestamp = Date.now();
+        const currentTimestamp = performance.now();
 
         if (savedTimestamp && savedTimestamp !== null) {
             // Calculate duration of offline time in milliseconds
