@@ -4,20 +4,20 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useAppSelector, useAppDispatch } from '../../utils/hooks';
 
 import { incrementCurrency, selectCurrency } from '../../store/reducers/currencySlice';
-import { incrementCraftingProject, selectCrafting } from '../../store/reducers/craftingSlice';
+import { incrementMission, selectMissions } from '../../store/reducers/missionsSlice';
 
 import { formatNumber } from '../../utils/helperFunctions';
 
-const CraftingProject = ({ craftingProjects, craftingProjectKey }) => {
+const MissionComponent = ({ missions, missionKey }) => {
   const dispatch = useAppDispatch();
   const currency = useAppSelector(selectCurrency);
-  const project = craftingProjects[craftingProjectKey];
+  const mission = missions[missionKey];
 
-  const handleCraftProject = () => {
+  const handleMissionStart = () => {
 
-    if (project && currency.money >= 100) {
+    if (mission && currency.money >= 100) {
       dispatch(incrementCurrency({ currencyType: 'money', value: -100 }))
-      dispatch(incrementCraftingProject({ craftingProjectKey: craftingProjectKey, value: 1 }))
+      dispatch(incrementMission({ missionKey: missionKey, value: 1 }))
 
       // setUpgradeCost((prevUpgradeCost) => generatorCost(generator.purchasedQuantity))
     }
@@ -25,14 +25,12 @@ const CraftingProject = ({ craftingProjects, craftingProjectKey }) => {
 
   useEffect(() => {
     // setUpgradeCost((prevUpgradeCost) => generatorCost(generators[generatorKey].purchasedQuantity))
-  }, [project])
+  }, [mission])
 
   return (
     <View style={styles.generatorContainer}>
-      <Text>{project.name} LvL{formatNumber(project.totalCrafted)}</Text>
-      <Text>Increases the output of {project.appliesTo} by 10%</Text>
-      <Text>Current Bonus: x{formatNumber((1.1 ** project.totalCrafted).toFixed(2))}</Text>
-      <Button onPress={handleCraftProject} title={`Buy ${project.name} \$100`}/>
+      <Text>{mission.name} LvL{formatNumber(mission.level)}</Text>
+      <Button onPress={handleMissionstart} title={`Start ${mission.name}`}/>
     </View>
 
   )
@@ -47,4 +45,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default CraftingProject;
+export default MissionComponent;

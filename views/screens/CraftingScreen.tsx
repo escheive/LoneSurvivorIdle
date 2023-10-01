@@ -18,6 +18,7 @@ const CraftingScreen = () => {
                 {craftingProjectsKeys.map((project) => (
                     <CraftingProject
                         key={project}
+                        craftingProjects={craftingProjects}
                         craftingProjectKey={project}
                     />
                 ))}
