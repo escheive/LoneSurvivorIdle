@@ -15,8 +15,7 @@ const MissionComponent = ({ missions, missionKey }) => {
 
   const handleMissionStart = () => {
 
-    if (mission && currency.money >= 100) {
-      dispatch(incrementCurrency({ currencyType: 'money', value: -100 }))
+    if (mission.startTime === null) {
       dispatch(incrementMission({ missionKey: missionKey, value: 1 }))
 
       // setUpgradeCost((prevUpgradeCost) => generatorCost(generator.purchasedQuantity))
