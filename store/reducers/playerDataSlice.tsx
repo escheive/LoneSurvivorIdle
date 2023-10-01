@@ -8,12 +8,12 @@ interface PlayerDataState {
 
 // Initial state for the playerDataSlice
 const initialState: PlayerDataState = {
-  lastOnlineTimestamp: null;
+  lastOnlineTimestamp: null,
 }
 
 // Reducer for tracking various playerData
 export const playerDataSlice = createSlice({
-  name: 'player data',
+  name: 'playerData',
   // playerDataSlice will infer the initialState from the `initialState` argument above
   initialState,
   reducers: {
@@ -28,7 +28,7 @@ export const playerDataSlice = createSlice({
 })
 
 // Export various actions for the slice
-export const { setLastPlayedTimestamp, resetPlayerData } = playerDataSlice.actions;
+export const { setLastOnlineTimestamp, resetPlayerData } = playerDataSlice.actions;
 // export method for useAppSelector to pull the data in the slice
 export const selectPlayerData = (state: RootState) => state.playerData;
 // export the playerData reducer itself

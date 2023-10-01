@@ -12,11 +12,13 @@ import {
 } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import playerDataSlice from './reducers/playerDataSlice';
 import currencySlice from './reducers/currencySlice';
 import generatorsSlice from './reducers/generatorsSlice';
 import craftingSlice from './reducers/craftingSlice';
 
 const rootReducer = combineReducers({
+    playerData: playerDataSlice,
     currency: currencySlice,
     generators: generatorsSlice,
     crafting: craftingSlice,
