@@ -3,6 +3,7 @@ import { ScrollView, View, Text } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 import ScreenWithBackButton from '../components/ScreenWithBackButton';
+import MissionComponent from '../components/MissionComponent';
 
 import { selectMissions } from '../../store/reducers/missionsSlice';
 
@@ -15,9 +16,11 @@ const MissionsScreen = () => {
         <ScrollView>
             <Text>MissionsScreen</Text>
             {missionsKeys.map((mission) => (
-                <View>
-                    <Text>{mission.name}</Text>
-                </View>
+                <MissionComponent
+                    key={mission}
+                    missions={missions}
+                    missionKey={mission}
+                />
             ))}
             <View>
             </View>

@@ -30,7 +30,7 @@ const MissionComponent = ({ missions, missionKey }) => {
   return (
     <View style={styles.generatorContainer}>
       <Text>{mission.name} LvL{formatNumber(mission.level)}</Text>
-      <Button onPress={handleMissionstart} title={`Start ${mission.name}`}/>
+      <Button onPress={handleMissionStart} title={`Start Mission`}/>
     </View>
 
   )
