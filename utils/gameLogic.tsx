@@ -35,7 +35,10 @@ export const calculateOfflineGains = (generatorKeys, updatedGeneratorsRef, craft
 
         const totalGeneratorProduction = increments * currentGenerator.totalQuantity * Math.max(1.1 ** applicableCraftingProject.totalCrafted, 1);
 
-        totalOfflineGains.push(`${currentGeneratorKey}: ${formatNumber(totalGeneratorProduction)}`);
+        totalOfflineGains.push({
+            name: currentGenerator.name,
+            gains: formatNumber(totalGeneratorProduction)
+        });
 
         if (updatedGeneratorsRef.current[currentGeneratorKey].totalQuantity > 0) {
             if (currentGeneratorKey === 'generatorOne') {

@@ -29,7 +29,7 @@ const Timer = () => {
   const money = useAppSelector(selectCurrency);
   const playerData = useAppSelector(selectPlayerData);
   const [showPopup, setShowPopup] = useState(true);
-  const [popupMessage, setPopupMessage] = useState([]);
+  const [offlineGains, setOfflineGains] = useState([]);
 
   const lerp = (v1, v2, p) => {
     return v1 * (1 - p) + v2 * p;
@@ -72,7 +72,7 @@ const Timer = () => {
 
             // Calculate all gains based on the offline duration
             const totalOfflineGains = calculateOfflineGains(generatorKeys, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch, offlineTicks);
-            setPopupMessage(totalOfflineGains)
+            setOfflineGains(totalOfflineGains)
         } else {
             dispatch(setLastOnlineTimestamp());
         }
@@ -90,7 +90,7 @@ const Timer = () => {
                 <Button onPress={gameLoop.stop} title='stop' />
             </View>
             <OfflineGainsPopup
-                message={popupMessage}
+                offlineGains={offlineGains}
                 isVisible={showPopup}
                 onClose={() => setShowPopup(false)}
             />
