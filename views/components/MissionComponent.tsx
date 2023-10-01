@@ -4,7 +4,7 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useAppSelector, useAppDispatch } from '../../utils/hooks';
 
 import { incrementCurrency, selectCurrency } from '../../store/reducers/currencySlice';
-import { incrementMission, selectMissions } from '../../store/reducers/missionsSlice';
+import { incrementMission, startMission, selectMissions } from '../../store/reducers/missionsSlice';
 
 import { formatNumber } from '../../utils/helperFunctions';
 
@@ -16,9 +16,7 @@ const MissionComponent = ({ missions, missionKey }) => {
   const handleMissionStart = () => {
 
     if (mission.startTime === null) {
-      dispatch(incrementMission({ missionKey: missionKey, value: 1 }))
-
-      // setUpgradeCost((prevUpgradeCost) => generatorCost(generator.purchasedQuantity))
+      dispatch(startMission({ missionKey: missionKey }))
     }
   }
 

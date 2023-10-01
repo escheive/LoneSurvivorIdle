@@ -31,7 +31,7 @@ export const useGameLoop = (options = {}) => {
     timing.current.total += timing.current.delta;
     timing.current.lag += timing.current.delta;
     timing.current.last = time;
-    timing.current.current = performance.now();
+    timing.current.current = Date.now();
 
     while (timing.current.lag >= options.step) {
       timing.current.lag -= options.step;

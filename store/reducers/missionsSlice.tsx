@@ -26,7 +26,7 @@ export const missionsSlice = createSlice({
         if (state.missions.hasOwnProperty(missionKey)) {
             // Start mission if startTime value is null
             if (missionToStart.startTime === null) {
-                missionToStart.startTime = performance.now();
+                missionToStart.startTime = Date.now();
             // Clear startTime if mission startTime is not null
             } else {
                 missionToStart.startTime = null;
@@ -48,8 +48,20 @@ export const missionsSlice = createSlice({
 })
 
 // Export various actions for the slice
-export const { incrementMission, resetMissions } = missionsSlice.actions;
+export const { incrementMission, startMission, resetMissions } = missionsSlice.actions;
 // export method for useAppSelector to pull the data in the slice
 export const selectMissions = (state: RootState) => state.missions.missions;
+// export method to grab started missions
+export const selectStartedMission = (state: RootState) => {
+    const missions = state.missions.missions;
+    const startedMissions = {};
+
+    for (const missionName in missions) {
+        if (missions[missionName].startTime !== null) {
+            startedMissions[missionName] = missions[missionName]
+        }
+    }
+    return startedMissions;
+};
 // export the missions reducer itself
 export default missionsSlice.reducer;
