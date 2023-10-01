@@ -14,7 +14,7 @@ export const formatNumber = (number: number) => {
   };
 
   if (number < 1e3) {
-    return number.toFixed(2).toString();
+    return number.toString();
   } else if (number < 1e6) {
     return (number / 1e3).toFixed(2) + 'k';
   } else if (number < 1e9) {

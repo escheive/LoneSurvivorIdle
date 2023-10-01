@@ -8,7 +8,7 @@ import OfflineGainsPopup from '../OfflineGainsPopup';
 
 import { selectGenerators, incrementGenerator } from '../../../store/reducers/generatorsSlice';
 import { selectCrafting } from '../../../store/reducers/craftingSlice';
-import { selectMissions } from '../../../store/reducers/missionsSlice';
+import { incrementMission, selectMissions, selectStartedMissions } from '../../../store/reducers/missionsSlice';
 import { selectCurrency, incrementCurrency } from '../../../store/reducers/currencySlice';
 import { selectPlayerData, setLastOnlineTimestamp } from '../../../store/reducers/playerDataSlice';
 
@@ -28,6 +28,8 @@ const Timer = () => {
   const craftingProjectKeys = Object.keys(craftingProjects);
   const updatedCraftingProjectsRef = useRef();
   const missions = useAppSelector(selectMissions);
+  const startedMissions = useAppSelector(selectStartedMissions);
+  const currentStartedMissionsRef = useRef(startedMissions);
   const money = useAppSelector(selectCurrency);
   const playerData = useAppSelector(selectPlayerData);
   const [showPopup, setShowPopup] = useState(true);
@@ -38,6 +40,11 @@ const Timer = () => {
   };
 
   const handleMissionsProgress = (currentTime) => {
+    for (const missionName in currentStartedMissionsRef.current) {
+        if (currentStartedMissionsRef.current[missionName].startTime + currentStartedMissionsRef.current[missionName].duration < currentTime) {
+            dispatch(incrementMission({ missionKey: missionName }))
+        }
+    }
 
   }
 
@@ -46,7 +53,7 @@ const Timer = () => {
       maxUpdates: 300,
       onUpdate: (currentTime) => {
         handleGeneratorIncrements(generatorKeys, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch)
-        dispatch(setLastOnlineTimestamp());
+        dispatch(setLastOnlineTimestamp({ currentTime: currentTime }));
         handleMissionsProgress(currentTime);
 //           dispatch(resetCurrency());
 //           dispatch(resetCrafting())
@@ -60,6 +67,10 @@ const Timer = () => {
 
       },
     });
+
+  useEffect(() => {
+    currentStartedMissionsRef.current = startedMissions;
+  }, [startedMissions])
 
   useEffect(() => {
     updatedGeneratorsRef.current = generators;

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
 import { missionsObject } from '../../data/missions';
 
@@ -40,6 +40,7 @@ export const missionsSlice = createSlice({
         // Validate the mission before changing state then incrementing level by 1
         if (state.missions.hasOwnProperty(missionKey)) {
             state.missions[missionKey].level += 1
+            state.missions[missionKey].startTime = null
         }
     },
     // Action to reset missionsSlice
@@ -54,8 +55,7 @@ export const { incrementMission, startMission, resetMissions } = missionsSlice.a
 // export method for useAppSelector to pull the data in the slice
 export const selectMissions = (state: RootState) => state.missions.missions;
 // export method to grab started missions
-export const selectStartedMission = (state: RootState) => {
-    const missions = state.missions.missions;
+export const selectStartedMissions = createSelector([selectMissions], missions => {
     const startedMissions = {};
 
     for (const missionName in missions) {
@@ -64,6 +64,6 @@ export const selectStartedMission = (state: RootState) => {
         }
     }
     return startedMissions;
-};
+});
 // export the missions reducer itself
 export default missionsSlice.reducer;
