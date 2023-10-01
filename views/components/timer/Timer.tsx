@@ -4,13 +4,14 @@ import { useAppDispatch, useAppSelector, useGameLoop } from '../../../utils/hook
 import Animated, { useSharedValue, Easing, withTiming } from 'react-native-reanimated';
 
 import TickProgressBar from './TickProgressBar';
+import OfflineGainsPopup from '../OfflineGainsPopup';
 
 import { selectGenerators, incrementGenerator, resetGenerators } from '../../../store/reducers/generatorsSlice';
 import { selectCrafting, resetCrafting } from '../../../store/reducers/craftingSlice';
 import { selectCurrency, incrementCurrency, resetCurrency } from '../../../store/reducers/currencySlice';
 import { selectPlayerData, setLastOnlineTimestamp } from '../../../store/reducers/playerDataSlice';
 
-import { handleGeneratorIncrements } from '../../../utils/gameLogic';
+import { handleGeneratorIncrements, calculateOfflineGains } from '../../../utils/gameLogic';
 
 
 const Timer = () => {
@@ -27,6 +28,8 @@ const Timer = () => {
   const updatedCraftingProjectsRef = useRef();
   const money = useAppSelector(selectCurrency);
   const playerData = useAppSelector(selectPlayerData);
+  const [showPopup, setShowPopup] = useState(true);
+  const [popupMessage, setPopupMessage] = useState('');
 
   const lerp = (v1, v2, p) => {
     return v1 * (1 - p) + v2 * p;
@@ -36,7 +39,7 @@ const Timer = () => {
       step: 1000,
       maxUpdates: 300,
       onUpdate: (step, time, timing) => {
-        handleGeneratorIncrements(generatorKeys, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch, 1)
+        handleGeneratorIncrements(generatorKeys, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch)
 //           dispatch(resetCurrency());
 //           dispatch(resetCrafting())
 //           dispatch(resetGenerators())
@@ -68,11 +71,12 @@ const Timer = () => {
             const offlineTicks = Math.min(offlineDuration / tickSpeed);
 
             // Calculate all gains based on the offline duration
-            handleGeneratorIncrements(generatorKeys, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch, offlineTicks)
+            const totalOfflineGains = calculateOfflineGains(generatorKeys, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch, offlineTicks);
+            setPopupMessage(totalOfflineGains)
         } else {
-             dispatch(setLastOnlineTimestamp())
+            dispatch(setLastOnlineTimestamp());
         }
-    }, [])
+    }, []);
 
     return (
         <View style={styles.timerContainer}>
@@ -85,6 +89,11 @@ const Timer = () => {
                 <Button onPress={gameLoop.start} title='start' />
                 <Button onPress={gameLoop.stop} title='stop' />
             </View>
+            <OfflineGainsPopup
+                message={popupMessage}
+                isVisible={showPopup}
+                onClose={() => setShowPopup(false)}
+            />
         </View>
     )
 }
