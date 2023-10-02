@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 import BaseCurrencyHeader from './currencies/BaseCurrencyHeader';
 import Timer from './timer/Timer';
@@ -7,18 +8,17 @@ import Timer from './timer/Timer';
 const Header = () => {
 
   return (
-    <View style={styles.headerContainer}>
+    <LinearGradient colors={['rgba(229, 216, 190, 0.8)', 'rgba(97, 110, 91, 0.8)']} style={styles.headerContainer}>
       <BaseCurrencyHeader />
       <Timer />
-    </View>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
     headerContainer: {
-        borderWidth: 2,
-        borderColor: 'rgba(160, 160, 160, 1.0)',
-        backgroundColor: 'rgba(44, 62, 80, 0.9)',
+        borderWidth: 3,
+        borderColor: 'rgba(97, 110, 91, 0.8)',
     }
 })
 
