@@ -3,7 +3,7 @@
 import React from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native';
 
-const OfflineGainsPopup = ({ offlineGains, isVisible, onClose }) => {
+const OfflineGainsPopup = ({ offlineGains, completedMissions, isVisible, onClose }) => {
   return (
     <Modal
       animationType="fade"
@@ -18,6 +18,10 @@ const OfflineGainsPopup = ({ offlineGains, isVisible, onClose }) => {
                 <Text style={styles.generatorGainsText}>{generator.gains}</Text>
             </View>
           ))}
+          <View style={styles.missionGainsContainer}>
+              <Text style={styles.generatorNameText}>Completed Missions</Text>
+              <Text style={styles.generatorGainsText}>{completedMissions}</Text>
+          </View>
           <TouchableOpacity
             style={styles.closeButton}
             onPress={() => onClose()}>
@@ -49,11 +53,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  generatorNameText: {
-
-  },
-  generatorGainsText: {
-
+  missionGainsContainer: {
+      width: '100%',
+      paddingVertical: 2,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      backgroundColor: 'blue',
   },
   closeButton: {
     marginTop: 10,

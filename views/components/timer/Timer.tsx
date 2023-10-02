@@ -34,18 +34,20 @@ const Timer = () => {
   const playerData = useAppSelector(selectPlayerData);
   const [showPopup, setShowPopup] = useState(true);
   const [offlineGains, setOfflineGains] = useState([]);
+  const [completedMissionsWhileOffline, setCompletedMissionsWhileOffline] = useState(0);
 
   const lerp = (v1, v2, p) => {
     return v1 * (1 - p) + v2 * p;
   };
 
   const handleMissionsProgress = (currentTime) => {
+
     for (const missionName in currentStartedMissionsRef.current) {
         if (currentStartedMissionsRef.current[missionName].startTime + currentStartedMissionsRef.current[missionName].duration < currentTime) {
             dispatch(incrementMission({ missionKey: missionName }))
+            setCompletedMissionsWhileOffline((completedMissions) => completedMissions + 1);
         }
     }
-
   }
 
   const gameLoop = useGameLoop({
@@ -112,6 +114,7 @@ const Timer = () => {
             </View>
             <OfflineGainsPopup
                 offlineGains={offlineGains}
+                completedMissions={completedMissionsWhileOffline}
                 isVisible={showPopup}
                 onClose={() => setShowPopup(false)}
             />
