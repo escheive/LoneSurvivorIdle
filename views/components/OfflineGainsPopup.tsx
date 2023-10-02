@@ -25,7 +25,7 @@ const OfflineGainsPopup = ({ offlineGains, completedMissions, isVisible, onClose
           <TouchableOpacity
             style={styles.closeButton}
             onPress={() => onClose()}>
-            <Text>Close</Text>
+            <Text style={styles.closeButtonText}>Close</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -42,29 +42,45 @@ const styles = StyleSheet.create({
   },
   modalView: {
     width: '95%',
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(44, 62, 80, 0.9)',
     borderRadius: 10,
-    padding: 20,
+    padding: 10,
     alignItems: 'center',
   },
   generatorGainsContainer: {
     width: '100%',
     paddingVertical: 2,
+    paddingHorizontal: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: 'rgba(77, 144, 194, 0.7)',
+  },
+  generatorNameText: {
+    color: 'white',
+    fontSize: 16,
+  },
+  generatorGainsText: {
+    color: 'lime',
+    fontSize: 16,
   },
   missionGainsContainer: {
       width: '100%',
       paddingVertical: 2,
+      paddingHorizontal: 5,
       flexDirection: 'row',
       justifyContent: 'space-between',
-      backgroundColor: 'blue',
+      backgroundColor: 'rgba(201, 67, 61, 0.7)',
   },
   closeButton: {
     marginTop: 10,
-    backgroundColor: 'lightgray',
+    backgroundColor: 'rgba(201, 67, 61, 0.7)',
     padding: 10,
     borderRadius: 5,
+  },
+  closeButtonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
   },
 });
 
