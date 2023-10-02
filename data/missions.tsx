@@ -4,7 +4,7 @@ export const missionsObject = {
         level: 0,
         name: 'Scout Potential Settlement Locations',
         startTime: null,
-        duration: 5 * 1000,
+        duration: 5,
         progress: 0,
     },
     clearOutRaiderEncampment: {
@@ -12,7 +12,7 @@ export const missionsObject = {
         level: 0,
         name: 'Clear Out Raider Encampment',
         startTime: null,
-        duration: 10 * 1000,
+        duration: 10,
         progress: 0,
     }
 }

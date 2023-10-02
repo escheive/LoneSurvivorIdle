@@ -27,7 +27,7 @@ export const missionsSlice = createSlice({
         if (state.missions.hasOwnProperty(missionKey)) {
             // Start mission if startTime value is null
             if (missionToStart.startTime === null) {
-                missionToStart.startTime = Date.now();
+                missionToStart.startTime = Date.now() / 1000;
             // Clear startTime if mission startTime is not null
             } else {
                 missionToStart.startTime = null;
