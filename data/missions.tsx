@@ -12,7 +12,7 @@ export const missionsObject = {
         level: 0,
         name: 'Clear Out Raider Encampment',
         startTime: null,
-        duration: 10,
+        duration: 120,
         progress: 0,
     }
 }

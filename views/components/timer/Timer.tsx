@@ -78,10 +78,12 @@ const Timer = () => {
   }, [generators, craftingProjects]);
 
     useEffect(() => {
+        // When app starts, start timer TODO: Later there will be no start stop buttons
+        gameLoop.start();
         // When app starts, grab last saved timestamp
         const savedTimestamp = playerData.lastOnlineTimestamp;
         // Get current timestamp
-        const currentTimestamp = Date.now();
+        const currentTimestamp = Date.now() / 1000;
 
         if (savedTimestamp && savedTimestamp !== null) {
             // Calculate duration of offline time in milliseconds
