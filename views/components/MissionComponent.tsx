@@ -20,15 +20,18 @@ const MissionComponent = ({ missions, missionKey }) => {
       dispatch(startMission({ missionKey: missionKey }))
   }
 
-  useEffect(() => {
-    currentTimestampRef.current = playerData.lastOnlineTimestamp;
-  }, [mission, playerData])
+  const currentTime = playerData.lastOnlineTimestamp;
+  const remainingTime = mission.startTime
+    ? Math.max(mission.startTime + mission.duration - currentTime, 0)
+    : 0;
 
   return (
     <View style={styles.generatorContainer}>
       <Text>{mission.name} LvL{formatNumber(mission.level)}</Text>
       {mission.startTime !== null ? (
-      <Text>{mission.startTime + mission.duration - currentTimestampRef.current}</Text>
+      <>
+        <Text>{remainingTime}</Text>
+      </>
       ) : null}
       <Button onPress={handleMissionStart} title={`Start Mission`}/>
     </View>
