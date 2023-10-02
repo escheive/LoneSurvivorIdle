@@ -6,6 +6,7 @@ import Animated, {
   withTiming,
   interpolate,
 } from 'react-native-reanimated';
+import LinearGradient from 'react-native-linear-gradient';
 
 const TickProgressBar = ({ progress }) => {
 
@@ -15,12 +16,12 @@ const TickProgressBar = ({ progress }) => {
 
     return (
         <View style={styles.container}>
-          <View style={styles.progressBar}>
+          <LinearGradient colors={['rgba(229, 216, 190, 0.8)', 'rgba(97, 110, 91, 0.8)']} style={styles.progressBar}>
               <Animated.View style={[styles.innerBar, animatedStyles]} />
               <View style={styles.incomeContainer}>
                 <Text style={styles.incomeText}>1</Text>
               </View>
-          </View>
+          </LinearGradient>
         </View>
     );
 }
@@ -34,16 +35,16 @@ const styles = StyleSheet.create({
         position: 'relative',
         height: 20,
         width: 200,
-        borderColor: 'tan',
-        borderRadius: 4,
         borderWidth: 2,
+        borderColor: 'rgba(140, 62, 16, 0.6)',
+        borderRadius: 4,
         overflow: 'hidden',
     },
     innerBar: {
         height: '100%',
         borderTopRightRadius: 4,
         borderBottomRightRadius: 4,
-        backgroundColor: 'tan',
+        backgroundColor: 'rgba(140, 62, 16, 0.6)',
     },
     incomeContainer: {
       position: 'absolute',
