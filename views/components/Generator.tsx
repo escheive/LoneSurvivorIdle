@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { Platform, View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { useAppSelector, useAppDispatch } from '../../utils/hooks';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import LinearGradient from 'react-native-linear-gradient';
 
 import { selectGenerators, buyGenerator } from '../../store/reducers/generatorsSlice';
 import { selectCurrency, incrementCurrency } from '../../store/reducers/currencySlice';
@@ -24,10 +25,17 @@ const Generator = ({ generatorKey, generatorCost }) => {
     }
 
   return (
-    <View style={styles.generatorContainer}>
-      <Text>{generator.name} x{formatNumber(Math.round(generator.totalQuantity))}</Text>
-      <Button onPress={handleBuyGenerator} title={`Buy ${generator.name} \$${formatNumber(upgradeCost.toFixed(2))}`} />
-    </View>
+    <LinearGradient style={styles.generatorContainer}
+        colors={['rgba(255, 255, 255, 0.1)', 'rgba(0, 0, 0, 0.1)']}
+    >
+      <Text style={styles.nameText}>{generator.name} x{formatNumber(Math.round(generator.totalQuantity))}</Text>
+      <TouchableOpacity
+        onPress={handleBuyGenerator}
+        style={styles.buyButton}
+      >
+        <Text style={styles.buyButtonText}>Buy {generator.name} ${formatNumber(upgradeCost)}</Text>
+      </TouchableOpacity>
+    </LinearGradient>
   )
 
 }
@@ -35,9 +43,47 @@ const Generator = ({ generatorKey, generatorCost }) => {
 const styles = StyleSheet.create({
   generatorContainer: {
     width: '100%',
-    marginTop: 16,
-    justifyContent: 'center'
-  }
+    backgroundColor: 'rgba(229, 216, 190, 1)',
+    padding: 6,
+    margin: 1,
+    justifyContent: 'center',
+    ...Platform.select({
+        android: {
+            elevation: 4,
+        },
+        ios: {
+            shadowColor: 'black',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.2,
+            shadowRadius: 4,
+        },
+    })
+  },
+  nameText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  buyButton: {
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    padding: 10,
+    ...Platform.select({
+        android: {
+            elevation: 1,
+        },
+        ios: {
+            shadowColor: 'black',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.2,
+            shadowRadius: 4,
+        },
+    })
+  },
+  buyButtonText: {
+    fontSize: 16,
+    color: 'black',
+    fontWeight: 'bold'
+  },
 })
 
 export default Generator;

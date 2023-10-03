@@ -22,12 +22,11 @@ const Header = () => {
 
 const styles = StyleSheet.create({
     headerContainer: {
-        borderWidth: 3,
         padding: 2,
         borderColor: 'rgba(229, 216, 190, 1)',
         ...Platform.select({
             android: {
-                elevation: 4,
+                elevation: 3,
             },
             ios: {
                 shadowColor: 'black',
