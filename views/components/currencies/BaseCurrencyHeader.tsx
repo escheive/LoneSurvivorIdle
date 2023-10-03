@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
         width: '100%',
         textAlign: 'center',
         marginVertical: 1,
-        color: 'white',
-        fontSize: 16,
+        color: 'rgba(179, 158, 40, 1)',
+        fontSize: 18,
         fontWeight: 'bold',
     }
 })
