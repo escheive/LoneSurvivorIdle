@@ -14,14 +14,9 @@ const CurrencyHeader = () => {
   const currency = useAppSelector(selectCurrency);
 
   return (
-    <LinearGradient
-        start={{x: 0, y: 0}}
-        end={{x: 1, y: 0}}
-        colors={['rgba(140, 62, 16, 0)', 'rgba(140, 62, 16, 0.3)', 'rgba(140, 62, 16, 0)']}
-        style={styles.currencyContainer}
-    >
+    <View style={styles.currencyContainer}>
       <Text style={styles.currencyText}>${formatNumber(currency.money.toFixed(2))}</Text>
-    </LinearGradient>
+    </View>
   )
 }
 

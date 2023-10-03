@@ -6,7 +6,7 @@ import { selectGenerators } from '../../store/reducers/generatorsSlice';
 
 import Generator from '../components/Generator';
 import Header from '../components/Header';
-import { generatorCosts } from '../../data/formulas/generatorFormulas';
+import { generatorCosts } from '../../data/formulas/costFormulas';
 
 const GeneratorsScreen = () => {
     const generators = useAppSelector(selectGenerators);

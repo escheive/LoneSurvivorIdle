@@ -35,7 +35,7 @@ const Navigation = () => {
 const styles = StyleSheet.create({
     navigationContainer: {
         flex: 1,
-        backgroundColor: 'rgba(44, 62, 80, 0.9)',
+        backgroundColor: 'rgba(70, 31, 8, 0.7)',
     }
 })
 

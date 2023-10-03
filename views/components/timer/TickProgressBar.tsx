@@ -16,12 +16,12 @@ const TickProgressBar = ({ progress }) => {
 
     return (
         <View style={styles.container}>
-          <LinearGradient colors={['rgba(229, 216, 190, 0.8)', 'rgba(97, 110, 91, 0.8)']} style={styles.progressBar}>
+          <View style={styles.progressBar}>
               <Animated.View style={[styles.innerBar, animatedStyles]} />
               <View style={styles.incomeContainer}>
                 <Text style={styles.incomeText}>1</Text>
               </View>
-          </LinearGradient>
+          </View>
         </View>
     );
 }
@@ -35,8 +35,9 @@ const styles = StyleSheet.create({
         position: 'relative',
         height: 20,
         width: 200,
-        borderWidth: 2,
-        borderColor: 'rgba(140, 62, 16, 0.6)',
+        borderWidth: 3,
+        borderColor: 'rgba(70, 31, 8, 0.7)',
+        backgroundColor: 'rgba(280, 124, 32, 0.3)',
         borderRadius: 4,
         overflow: 'hidden',
     },
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
         height: '100%',
         borderTopRightRadius: 4,
         borderBottomRightRadius: 4,
-        backgroundColor: 'rgba(140, 62, 16, 0.6)',
+        backgroundColor: 'rgba(140, 62, 16, 0.7)',
     },
     incomeContainer: {
       position: 'absolute',

@@ -7,6 +7,8 @@ import { selectCrafting } from '../../store/reducers/craftingSlice';
 import ScreenWithBackButton from '../components/ScreenWithBackButton';
 import CraftingProject from '../components/CraftingProject';
 
+import { craftingCosts } from '../../data/formulas/costFormulas';
+
 const CraftingScreen = () => {
     const craftingProjects = useAppSelector(selectCrafting);
     const craftingProjectsKeys = Object.keys(craftingProjects);
@@ -20,6 +22,7 @@ const CraftingScreen = () => {
                         key={project}
                         craftingProjects={craftingProjects}
                         craftingProjectKey={project}
+                        projectCost={craftingCosts[project]}
                     />
                 ))}
             </ScrollView>

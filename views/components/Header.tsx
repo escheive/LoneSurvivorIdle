@@ -8,7 +8,12 @@ import Timer from './timer/Timer';
 const Header = () => {
 
   return (
-    <LinearGradient colors={['rgba(229, 216, 190, 0.8)', 'rgba(97, 110, 91, 0.8)']} style={styles.headerContainer}>
+    <LinearGradient
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 0}}
+        colors={['rgba(140, 62, 16, 0)', 'rgba(140, 62, 16, 0.7)', 'rgba(140, 62, 16, 0)']}
+        style={styles.headerContainer}
+    >
       <BaseCurrencyHeader />
       <Timer />
     </LinearGradient>
