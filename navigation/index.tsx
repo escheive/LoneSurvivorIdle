@@ -16,7 +16,17 @@ const Navigation = () => {
             <NavigationContainer>
                 <Header />
                 <BottomTab.Navigator
-                    screenOptions={{ headerShown: false }}
+                    screenOptions={{
+                        headerShown: false,
+                        tabBarInactiveTintColor: 'white',
+                        tabBarActiveTintColor: 'red',
+                        tabBarStyle: {
+                          backgroundColor: 'rgba(44, 62, 80, 0.9)',
+                        },
+                        tabBarLabelStyle: {
+                          fontSize: 16,
+                        },
+                     }}
                 >
                     <BottomTab.Screen
                         name="Generators"
@@ -35,7 +45,7 @@ const Navigation = () => {
 const styles = StyleSheet.create({
     navigationContainer: {
         flex: 1,
-        backgroundColor: 'rgba(229, 216, 190, 1)',
+        backgroundColor: 'rgba(44, 62, 80, 0.9)',
     }
 })
 

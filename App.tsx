@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
+import React from 'react';
 import { useAppDispatch, useAppSelector } from './utils/hooks';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -39,9 +38,3 @@ export default function AppWrapper() {
         </Provider>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    }
-})

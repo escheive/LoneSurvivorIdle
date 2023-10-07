@@ -33,7 +33,7 @@ const GeneratorsScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'rgba(229, 216, 190, 1)',
+        backgroundColor: 'rgba(44, 62, 80, 0.9)',
     },
 })
 

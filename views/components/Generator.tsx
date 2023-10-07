@@ -28,7 +28,7 @@ const Generator = ({ generatorKey, generatorCost }) => {
     <LinearGradient style={styles.generatorContainer}
         colors={['rgba(255, 255, 255, 0.1)', 'rgba(0, 0, 0, 0.1)']}
     >
-      <Text style={styles.nameText}>{generator.name} x{formatNumber(Math.round(generator.totalQuantity))}</Text>
+      <Text style={styles.nameText}>{generator.name} x{formatNumber(generator.totalQuantity)}</Text>
       <TouchableOpacity
         onPress={handleBuyGenerator}
         style={styles.buyButton}
@@ -43,7 +43,7 @@ const Generator = ({ generatorKey, generatorCost }) => {
 const styles = StyleSheet.create({
   generatorContainer: {
     width: '100%',
-    backgroundColor: 'rgba(229, 216, 190, 1)',
+    backgroundColor: 'rgba(44, 62, 80, 0.9)',
     padding: 6,
     margin: 1,
     justifyContent: 'center',
@@ -62,10 +62,10 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: 'black',
+    color: 'white',
   },
   buyButton: {
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    backgroundColor: 'rgba(201, 67, 61, 0.7)',
     padding: 10,
     ...Platform.select({
         android: {
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   },
   buyButtonText: {
     fontSize: 16,
-    color: 'black',
+    color: 'white',
     fontWeight: 'bold'
   },
 })
