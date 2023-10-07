@@ -15,7 +15,6 @@ const CraftingScreen = () => {
     return (
         <ScreenWithBackButton>
             <ScrollView>
-                <Text>CraftingScreen</Text>
                 {craftingProjects.map((project) => (
                     <CraftingProject
                         key={project.id}

@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     })
   },
   buyButtonText: {
+    textAlign: 'center',
     fontSize: 16,
     color: 'white',
     fontWeight: 'bold'
