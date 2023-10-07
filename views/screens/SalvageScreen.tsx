@@ -8,6 +8,7 @@ import { selectGenerators } from '../../store/reducers/generatorsSlice';
 
 import SalvageUpgradeComponent from '../components/SalvageUpgradeComponent';
 import ScreenWithBackButton from '../components/ScreenWithBackButton';
+import Banner from '../components/Banner';
 
 import { calculateSalvagedTechEarned } from '../../utils/gameLogic';
 import { formatNumber } from '../../utils/helperFunctions';
@@ -22,7 +23,7 @@ const SalvageScreen = () => {
 
   const performSalvageReset = () => {
     if (generators[2].totalQuantity < 1) {
-      handleShowBanner(setShowBanner, 'You need to unlock Scrap Aggregation first')
+      setShowBanner('You need to unlock Scrap Aggregation first')
     } else {
 //       setPrestigeUpgradesState((prevPrestigeUpgradesState) => ({
 //         ...prevPrestigeUpgradesState,
@@ -41,8 +42,8 @@ const SalvageScreen = () => {
 
   return (
     <ScreenWithBackButton>
-      {showBanner ? (
-
+      {showBanner !== false ? (
+        <Banner message={showBanner} />
       ) : null}
       <Text style={styles.currentSalvagedTechText}>{currency.prestigePoints}</Text>
       <Text style={styles.salvagedTechGainedOnResetText}>Salvaged Tech gained on reset: {formatNumber(salvagedTechGainedOnReset)}</Text>
