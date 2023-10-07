@@ -8,17 +8,18 @@ import { incrementCraftingProject, selectCrafting } from '../../store/reducers/c
 
 import { formatNumber } from '../../utils/helperFunctions';
 
-const CraftingProject = ({ craftingProjects, craftingProjectKey, projectCost }) => {
+const CraftingProject = ({ craftingProjectId, projectCost }) => {
   const dispatch = useAppDispatch();
   const currency = useAppSelector(selectCurrency);
-  const project = craftingProjects[craftingProjectKey];
+  const craftingProjects = useAppSelector(selectCrafting);
+  const project = craftingProjects[craftingProjectId];
   const upgradeCost = useMemo(() => projectCost(project.totalCrafted), [project.totalCrafted]);
 
   const handleCraftProject = () => {
 
     if (project && currency.money >= upgradeCost) {
-      dispatch(incrementCurrency({ currencyType: 'money', value: -100 }))
-      dispatch(incrementCraftingProject({ craftingProjectKey: craftingProjectKey, value: 1 }))
+      dispatch(incrementCurrency({ currencyType: 'money', value: -upgradeCost }))
+      dispatch(incrementCraftingProject({ craftingProjectId: craftingProjectId, value: 1 }))
     }
   }
 

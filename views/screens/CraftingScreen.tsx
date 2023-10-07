@@ -11,18 +11,16 @@ import { craftingCosts } from '../../data/formulas/costFormulas';
 
 const CraftingScreen = () => {
     const craftingProjects = useAppSelector(selectCrafting);
-    const craftingProjectsKeys = Object.keys(craftingProjects);
 
     return (
         <ScreenWithBackButton>
             <ScrollView>
                 <Text>CraftingScreen</Text>
-                {craftingProjectsKeys.map((project) => (
+                {craftingProjects.map((project) => (
                     <CraftingProject
-                        key={project}
-                        craftingProjects={craftingProjects}
-                        craftingProjectKey={project}
-                        projectCost={craftingCosts[project]}
+                        key={project.id}
+                        craftingProjectId={project.id}
+                        projectCost={craftingCosts[project.id]}
                     />
                 ))}
             </ScrollView>

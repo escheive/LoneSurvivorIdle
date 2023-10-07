@@ -17,10 +17,10 @@ export const craftingSlice = createSlice({
   initialState,
   reducers: {
     // Use the `PayloadAction` type to declare the contents of `action.payload`
-    incrementCraftingProject: (state, action: PayloadAction<{ craftingProjectKey: string, value: number }>) => {
-      const { craftingProjectKey, value } = action.payload;
-      if (state.crafting.hasOwnProperty(craftingProjectKey)) {
-        state.crafting[craftingProjectKey].totalCrafted += value
+    incrementCraftingProject: (state, action: PayloadAction<{ craftingProjectId: number, value: number }>) => {
+      const { craftingProjectId, value } = action.payload;
+      if (state.crafting[craftingProjectId].id === craftingProjectId) {
+        state.crafting[craftingProjectId].totalCrafted += value
       }
     },
     resetCrafting: () => {

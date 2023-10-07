@@ -24,7 +24,6 @@ const Timer = () => {
   const generators = useAppSelector(selectGenerators);
   const updatedGeneratorsRef = useRef();
   const craftingProjects = useAppSelector(selectCrafting);
-  const craftingProjectKeys = Object.keys(craftingProjects);
   const updatedCraftingProjectsRef = useRef();
   const missions = useAppSelector(selectMissions);
   const startedMissions = useAppSelector(selectStartedMissions);
@@ -53,7 +52,7 @@ const Timer = () => {
       step: 1000,
       maxUpdates: 300,
       onUpdate: (currentTime) => {
-        handleGeneratorIncrements(generators, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch)
+        handleGeneratorIncrements(updatedGeneratorsRef, updatedCraftingProjectsRef, dispatch)
         dispatch(setLastOnlineTimestamp({ currentTime: currentTime }));
         handleMissionsProgress(currentTime);
 //           dispatch(resetCurrency());
@@ -93,7 +92,7 @@ const Timer = () => {
             const offlineTicks = Math.min(offlineDuration / tickSpeed);
 
             // Calculate all gains based on the offline duration
-            const totalOfflineGains = calculateOfflineGains(generators, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch, offlineTicks);
+            const totalOfflineGains = calculateOfflineGains(updatedGeneratorsRef, updatedCraftingProjectsRef, dispatch, offlineTicks);
             setOfflineGains(totalOfflineGains)
         } else {
             dispatch(setLastOnlineTimestamp({ currentTime: Date.now()/1000}));

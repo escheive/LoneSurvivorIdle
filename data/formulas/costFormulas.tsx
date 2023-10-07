@@ -44,30 +44,28 @@ export const generatorCosts: Record<string, (purchasedGenerators: number) => num
 // }
 
 export const craftingCosts: Record<string, (purchasedProjects: number) => number> = {
-    scrapCompressor: (purchasedProjects) =>
+    0: (purchasedProjects) =>
       5e2 * (1.1 + (0.1 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 5, 0) / 500 )),
-    scavengersToolkit: (purchasedProjects) =>
+    1: (purchasedProjects) =>
         5e3 * (2.9 + ( 0.3 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 199, 0) / 500)),
-    scrapAggregator: (purchasedProjects) =>
+    2: (purchasedProjects) =>
       5e4 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
-    resourceRefinery: (purchasedProjects) =>
+    3: (purchasedProjects) =>
       5e7 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
-    recyclingPlant: (purchasedProjects) =>
+    4: (purchasedProjects) =>
       5e10 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
-    materialFabricator: (purchasedProjects) =>
+    5: (purchasedProjects) =>
       5e13 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
-    materialSynthesizer: (purchasedProjects) =>
+    6: (purchasedProjects) =>
       5e16 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
-    techSalvageMatrix: (purchasedProjects) =>
+    7: (purchasedProjects) =>
       5e19 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
-    techInnovator: (purchasedProjects) =>
+    8: (purchasedProjects) =>
       5e22 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
-    innovationLab: (purchasedProjects) =>
+    9: (purchasedProjects) =>
       5e25 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
-    nexusCoreIntegration: (purchasedProjects) =>
+    10: (purchasedProjects) =>
       5e28 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
-    generatorOverclocker: (purchasedProjects) =>
+    11: (purchasedProjects) =>
       5e31 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
-      masterScavengersBlueprint: (purchasedProjects) =>
-      5e34 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
 }
