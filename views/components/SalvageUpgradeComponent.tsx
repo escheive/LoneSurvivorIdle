@@ -4,7 +4,7 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useAppSelector, useAppDispatch } from '../../utils/hooks';
 
 import { incrementCurrency, selectCurrency } from '../../store/reducers/currencySlice';
-import { incrementCraftingProject, selectCrafting } from '../../store/reducers/craftingSlice';
+import { incrementSalvageUpgrade } from '../../store/reducers/salvageSlice';
 
 import { salvageUpgradesCost } from '../../data/formulas/costFormulas';
 import { formatNumber } from '../../utils/helperFunctions';
@@ -16,9 +16,9 @@ const SalvageUpgradeComponent = ({ upgrade }) => {
 
   const handleBuyUpgrade = () => {
 
-    if (upgrade && currency.money >= upgradeCost) {
+    if (upgrade && currency.salvagedTech >= upgradeCost) {
       dispatch(incrementCurrency({ currencyType: 'salvagedTech', value: -upgradeCost }))
-//       dispatch(incrementCraftingProject({ craftingProjectId: craftingProjectId, value: 1 }))
+      dispatch(incrementSalvageUpgrade({ upgradeId: upgrade.id }))
     }
   }
 
