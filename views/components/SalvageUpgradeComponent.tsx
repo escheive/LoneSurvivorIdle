@@ -6,17 +6,18 @@ import { useAppSelector, useAppDispatch } from '../../utils/hooks';
 import { incrementCurrency, selectCurrency } from '../../store/reducers/currencySlice';
 import { incrementCraftingProject, selectCrafting } from '../../store/reducers/craftingSlice';
 
+import { salvageUpgradesCost } from '../../data/formulas/costFormulas';
 import { formatNumber } from '../../utils/helperFunctions';
 
 const SalvageUpgradeComponent = ({ upgrade }) => {
   const dispatch = useAppDispatch();
   const currency = useAppSelector(selectCurrency);
-//   const upgradeCost = useMemo(() => projectCost(project.totalCrafted), [project.totalCrafted]);
+  const upgradeCost = useMemo(() => salvageUpgradesCost[upgrade.id](upgrade.level), [upgrade.level]);
 
   const handleBuyUpgrade = () => {
 
     if (upgrade && currency.money >= upgradeCost) {
-      dispatch(incrementCurrency({ currencyType: 'salvagedTech', value: -1 }))
+      dispatch(incrementCurrency({ currencyType: 'salvagedTech', value: -upgradeCost }))
 //       dispatch(incrementCraftingProject({ craftingProjectId: craftingProjectId, value: 1 }))
     }
   }
@@ -30,7 +31,7 @@ const SalvageUpgradeComponent = ({ upgrade }) => {
         onPress={handleBuyUpgrade}
         style={styles.buyButton}
       >
-        <Text style={styles.buyButtonText}>Upgrade {upgrade.name} ${formatNumber(100)}</Text>
+        <Text style={styles.buyButtonText}>Upgrade {upgrade.name} {formatNumber(upgradeCost)} Salvaged Tech</Text>
       </TouchableOpacity>
     </View>
 

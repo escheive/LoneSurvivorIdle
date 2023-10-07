@@ -20,28 +20,6 @@ export const generatorCosts: Record<string, (purchasedGenerators: number) => num
   9: (purchasedGenerators) =>
     4e18 * (50 + (30 * purchasedGenerators)) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 74, 0) / 200)),
 }
-// export const generatorCosts: Record<string, (purchasedGenerators: number) => number> = {
-//   generatorOne: (purchasedGenerators) =>
-//     3 * (1.065 + (0.004 * purchasedGenerators)) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 999, 0) / 1000)),
-//   generatorTwo: (purchasedGenerators) =>
-//     2e3 * (2.9 + ( 0.3 * purchasedGenerators)) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 199, 0) / 500)),
-//   generatorThree: (purchasedGenerators) =>
-//     1e8 * (20 + (10 * purchasedGenerators)) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 99, 0 ) / (1000 / 3))),
-//   generatorFour: (purchasedGenerators) =>
-//     4e18 * (50 + (30 * purchasedGenerators)) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 74, 0) / 200)),
-//   generatorFive: (purchasedGenerators) =>
-//     5e46 * (220 + 80 * purchasedGenerators) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 49, 0) / 200)),
-//   generatorSix: (purchasedGenerators) =>
-//     6e200 * (6e5 + 6e5 * purchasedGenerators) ** (purchasedGenerators * (1 + purchasedGenerators / (500 / 3))),
-//   generatorSeven: (purchasedGenerators) =>
-//     47e500 * (7e7 + 7e7 * purchasedGenerators) ** (purchasedGenerators * (1 + purchasedGenerators / 50)),
-//   generatorEight: (purchasedGenerators) =>
-//     4e18 * (50 + (30 * purchasedGenerators)) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 74, 0) / 200)),
-//   generatorNine: (purchasedGenerators) =>
-//     4e18 * (50 + (30 * purchasedGenerators)) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 74, 0) / 200)),
-//   generatorTen: (purchasedGenerators) =>
-//     4e18 * (50 + (30 * purchasedGenerators)) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 74, 0) / 200)),
-// }
 
 export const craftingCosts: Record<string, (purchasedProjects: number) => number> = {
     0: (purchasedProjects) =>
@@ -68,4 +46,29 @@ export const craftingCosts: Record<string, (purchasedProjects: number) => number
       5e28 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
     11: (purchasedProjects) =>
       5e31 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
+}
+
+export const salvageUpgradesCost: Record<string, (upgradeLevel: number) => number> = {
+  0: (upgradeLevel) =>
+    1 * (upgradeLevel) ** (upgradeLevel * (1 + Math.max(upgradeLevel - 5, 0) / 500 )),
+  1: (upgradeLevel) =>
+    2 * (upgradeLevel) ** (upgradeLevel * (1 + Math.max(upgradeLevel - 5, 0) / 500 )),
+  2: (upgradeLevel) =>
+    3 * (upgradeLevel) ** (upgradeLevel * (1 + Math.max(upgradeLevel - 5, 0) / 500 )),
+  3: (upgradeLevel) =>
+    4 * (upgradeLevel) ** (upgradeLevel * (1 + Math.max(upgradeLevel - 5, 0) / 500 )),
+  4: (upgradeLevel) =>
+    5 * (upgradeLevel) ** (upgradeLevel * (1 + Math.max(upgradeLevel - 5, 0) / 500 )),
+  5: (upgradeLevel) =>
+    6 * (upgradeLevel) ** (upgradeLevel * (1 + Math.max(upgradeLevel - 5, 0) / 500 )),
+  6: (upgradeLevel) =>
+    7 * (upgradeLevel) ** (upgradeLevel * (1 + Math.max(upgradeLevel - 5, 0) / 500 )),
+  7: (upgradeLevel) =>
+    8 * (upgradeLevel) ** (upgradeLevel * (1 + Math.max(upgradeLevel - 5, 0) / 500 )),
+  8: (upgradeLevel) =>
+    9 * (upgradeLevel) ** (upgradeLevel * (1 + Math.max(upgradeLevel - 5, 0) / 500 )),
+  9: (upgradeLevel) =>
+    10 * (upgradeLevel) ** (upgradeLevel * (1 + Math.max(upgradeLevel - 5, 0) / 500 )),
+  10: (upgradeLevel) =>
+    11 * (upgradeLevel) ** (upgradeLevel * (1 + Math.max(upgradeLevel - 5, 0) / 500 )),
 }
