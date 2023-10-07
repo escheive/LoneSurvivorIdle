@@ -3,8 +3,8 @@ import { ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-nati
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 import { selectSalvage, incrementSalvageUpgrade } from '../../store/reducers/salvageSlice';
-import { selectCurrency, resetCurrency } from '../../store/reducers/currencySlice';
-import { selectGenerators } from '../../store/reducers/generatorsSlice';
+import { selectCurrency, incrementCurrency, resetCurrency } from '../../store/reducers/currencySlice';
+import { selectGenerators, resetGenerators } from '../../store/reducers/generatorsSlice';
 
 import SalvageUpgradeComponent from '../components/SalvageUpgradeComponent';
 import ScreenWithBackButton from '../components/ScreenWithBackButton';
@@ -23,6 +23,8 @@ const SalvageScreen = () => {
 
   const performSalvageReset = () => {
     if (generators[2].totalQuantity < 1) {
+      let bannerTimeout;
+
       if (bannerTimeout) {
         clearTimeout(bannerTimeout)
       }
@@ -43,7 +45,7 @@ const SalvageScreen = () => {
       {showBanner !== false ? (
         <Banner message={showBanner} />
       ) : null}
-      <Text style={styles.currentSalvagedTechText}>{currency.prestigePoints}</Text>
+      <Text style={styles.currentSalvagedTechText}>Salvaged Tech: {currency.salvagedTech}</Text>
       <Text style={styles.salvagedTechGainedOnResetText}>Salvaged Tech gained on reset: {formatNumber(salvagedTechGainedOnReset)}</Text>
 {/*       <Text style={styles.salvagedTechGainedOnResetText}>Salvaged Tech gained on reset: {formatNumber(calculateSalvagedTechEarned(currency.money))}</Text> */}
       <ScrollView>
