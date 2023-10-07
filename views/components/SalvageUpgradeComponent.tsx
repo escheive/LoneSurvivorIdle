@@ -16,7 +16,7 @@ const SalvageUpgradeComponent = ({ upgrade }) => {
   const handleBuyUpgrade = () => {
 
     if (upgrade && currency.money >= upgradeCost) {
-      dispatch(incrementCurrency({ currencyType: 'prestigePoints', value: -1 }))
+      dispatch(incrementCurrency({ currencyType: 'salvagedTech', value: -1 }))
 //       dispatch(incrementCraftingProject({ craftingProjectId: craftingProjectId, value: 1 }))
     }
   }

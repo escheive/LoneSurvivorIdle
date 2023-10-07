@@ -10,7 +10,7 @@ export const handleGeneratorIncrements = (updatedGeneratorsRef, updatedCraftingP
         generator = updatedGeneratorsRef.current[i];
         applicableCraftingProject = updatedCraftingProjectsRef.current[i];
 
-        const totalGeneratorProduction = generator.totalQuantity * Math.max(1.1 ** applicableCraftingProject.totalCrafted, 1);
+        const totalGeneratorProduction = Math.floor(generator.totalQuantity * Math.max(1.1 ** applicableCraftingProject.totalCrafted, 1));
 
         if (generator.totalQuantity > 0) {
             if (generator.id === 0) {

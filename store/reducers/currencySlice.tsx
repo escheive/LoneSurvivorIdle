@@ -11,8 +11,7 @@ interface CurrencyState {
 // Initial state for the currencySlice
 const initialState: CurrencyState = {
   money: 3,
-  shards: 0,
-  prestigePoints: 0
+  salvagedTech: 0
 }
 
 // Reducer for tracking various currencies in the game

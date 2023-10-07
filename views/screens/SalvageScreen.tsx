@@ -23,19 +23,17 @@ const SalvageScreen = () => {
 
   const performSalvageReset = () => {
     if (generators[2].totalQuantity < 1) {
+      if (bannerTimeout) {
+        clearTimeout(bannerTimeout)
+      }
       setShowBanner('You need to unlock Scrap Aggregation first')
+
+      bannerTimeout = setTimeout(() => {
+        setShowBanner(false);
+      }, 1500);
     } else {
-//       setPrestigeUpgradesState((prevPrestigeUpgradesState) => ({
-//         ...prevPrestigeUpgradesState,
-//         totalPrestiges: prevPrestigeUpgradesState.totalPrestiges + 1,
-//       }))
-
-//       const salvagedTechGainedOnReset = calculateSalvagedTechEarned(currency.money);
-
       dispatch(resetCurrency());
-      // dispatch(incrementCurrency({ currencyType: 'money', value: -currency.money }))
-      // dispatch(incrementCurrency({ currencyType: 'shards', value: -currency.shards }))
-      dispatch(incrementCurrency({ currencyType: 'prestigePoints', value: salvagedTechGainedOnReset }))
+      dispatch(incrementCurrency({ currencyType: 'salvagedTech', value: salvagedTechGainedOnReset }))
       dispatch(resetGenerators());
     }
   }
