@@ -10,17 +10,17 @@ import { selectCurrency, incrementCurrency } from '../../store/reducers/currency
 import { resetGenerators } from '../../store/reducers/generatorsReducer';
 import { formatNumber } from '../../utils/helperFunctions';
 
-const Generator = ({ generatorKey, generatorCost }) => {
+const Generator = ({ generatorId, generatorCost }) => {
     const dispatch = useAppDispatch();
     const currency = useAppSelector(selectCurrency);
     const generators = useAppSelector(selectGenerators);
-    const generator = generators[generatorKey];
+    const generator = generators[generatorId];
     const upgradeCost = useMemo(() => generatorCost(generator.purchasedQuantity), [generator.purchasedQuantity]);
 
     const handleBuyGenerator = () => {
         if (generator && currency.money >= upgradeCost) {
             dispatch(incrementCurrency({ currencyType: 'money', value: -upgradeCost}))
-            dispatch(buyGenerator({ generatorKey: generatorKey, value: 1 }));
+            dispatch(buyGenerator({ generatorId: generator.id, value: 1 }));
         }
     }
 

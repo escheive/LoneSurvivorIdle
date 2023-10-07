@@ -22,7 +22,6 @@ const Timer = () => {
   const [progress, setProgress] = useState(0);
   const animationRef = useRef(0);
   const generators = useAppSelector(selectGenerators);
-  const generatorKeys = Object.keys(generators);
   const updatedGeneratorsRef = useRef();
   const craftingProjects = useAppSelector(selectCrafting);
   const craftingProjectKeys = Object.keys(craftingProjects);
@@ -54,7 +53,7 @@ const Timer = () => {
       step: 1000,
       maxUpdates: 300,
       onUpdate: (currentTime) => {
-        handleGeneratorIncrements(generatorKeys, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch)
+        handleGeneratorIncrements(generators, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch)
         dispatch(setLastOnlineTimestamp({ currentTime: currentTime }));
         handleMissionsProgress(currentTime);
 //           dispatch(resetCurrency());
@@ -94,7 +93,7 @@ const Timer = () => {
             const offlineTicks = Math.min(offlineDuration / tickSpeed);
 
             // Calculate all gains based on the offline duration
-            const totalOfflineGains = calculateOfflineGains(generatorKeys, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch, offlineTicks);
+            const totalOfflineGains = calculateOfflineGains(generators, updatedGeneratorsRef, craftingProjectKeys, updatedCraftingProjectsRef, dispatch, offlineTicks);
             setOfflineGains(totalOfflineGains)
         } else {
             dispatch(setLastOnlineTimestamp({ currentTime: Date.now()/1000}));
@@ -108,10 +107,6 @@ const Timer = () => {
               totalIncome={1}
               tickSpeed={tickSpeed}
             />
-            <View style={styles.timerButtonsContainer}>
-                <Button onPress={gameLoop.start} title='start' />
-                <Button onPress={gameLoop.stop} title='stop' />
-            </View>
             <OfflineGainsPopup
                 offlineGains={offlineGains}
                 completedMissions={completedMissionsWhileOffline}
@@ -134,3 +129,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
 });
+
+// <View style={styles.timerButtonsContainer}>
+//     <Button onPress={gameLoop.start} title='start' />
+//     <Button onPress={gameLoop.stop} title='stop' />
+// </View>

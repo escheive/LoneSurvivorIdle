@@ -10,18 +10,17 @@ import { generatorCosts } from '../../data/formulas/costFormulas';
 
 const GeneratorsScreen = () => {
     const generators = useAppSelector(selectGenerators);
-    const generatorKeys = Object.keys(generators);
 
     return (
         <View style={styles.container}>
             <ScrollView>
-                {generatorKeys.map((key) => {
+                {generators.map((generator) => {
 
                     return (
                         <Generator
-                            key={key}
-                            generatorKey={key}
-                            generatorCost={generatorCosts[key]}
+                            key={generator.id}
+                            generatorId={generator.id}
+                            generatorCost={generatorCosts[generator.id]}
                         />
                     )
                 })}

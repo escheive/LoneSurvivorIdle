@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
-import { generatorsObject, crystalsObject } from '../../data/generators';
+import { generatorsArray, crystalsObject } from '../../data/generators';
 
 // Define a type for our generatorsSlice state
 interface GeneratorsState {
-  generators: generatorsObject
+  generators: generatorsArray
 }
 
 const initialState: GeneratorsState =  {
-  generators: generatorsObject
+  generators: generatorsArray
 }
 
 export const generatorsSlice = createSlice({
@@ -17,17 +17,17 @@ export const generatorsSlice = createSlice({
   initialState,
   reducers: {
     // Use the `PayloadAction` type to declare the contents of `action.payload`
-    incrementGenerator: (state, action: PayloadAction<{ generatorKey: string, value: number }>) => {
-      const { generatorKey, value } = action.payload;
-      if (state.generators.hasOwnProperty(generatorKey)) {
-        state.generators[generatorKey].totalQuantity += value
+    incrementGenerator: (state, action: PayloadAction<{ generatorId: number, value: number }>) => {
+      const { generatorId, value } = action.payload;
+      if (state.generators[generatorId].id === generatorId) {
+        state.generators[generatorId].totalQuantity += value
       }
     },
-    buyGenerator: (state, action: PayloadAction<{ generatorKey: string, value: number }>) => {
-      const { generatorKey, value } = action.payload;
-      if (state.generators.hasOwnProperty(generatorKey)) {
-        state.generators[generatorKey].purchasedQuantity += value
-        state.generators[generatorKey].totalQuantity += value
+    buyGenerator: (state, action: PayloadAction<{ generatorId: string, value: number }>) => {
+      const { generatorId, value } = action.payload;
+      if (state.generators[generatorId].id === generatorId) {
+        state.generators[generatorId].purchasedQuantity += value
+        state.generators[generatorId].totalQuantity += value
       }
     },
     resetGenerators: () => {

@@ -1,66 +1,66 @@
 // Initial object with all of the generators data
-export const generatorsObject = {
-    generatorOne: {
+export const generatorsArray = [
+    {
         id: 0,
         name: `Scrapyard`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
-    generatorTwo: {
+    {
         id: 1,
         name: `Scavenging`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
-    generatorThree: {
+    {
         id: 2,
         name: `Scrap Aggregation`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
-    generatorFour: {
+    {
         id: 3,
         name: `Resource Refining`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
-    generatorFive: {
+    {
         id: 4,
         name: `Resource Recycling`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
-    generatorSix: {
+    {
         id: 5,
         name: `Material Fabrication`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
-    generatorSeven: {
+    {
         id: 6,
         name: `Material Synthesis`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
-    generatorEight: {
+    {
         id: 7,
         name: `Tech Salvaging`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
-    generatorNine: {
+    {
         id: 8,
         name: `Tech Innovation`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     },
-    generatorTen: {
+    {
         id: 9,
         name: `Innovation Nexus`,
         totalQuantity: 0,
         purchasedQuantity: 0,
     }
-}
+]
 
 // Initial object storing crystals data, an alternate type of generator
 export const crystalsObject = {
