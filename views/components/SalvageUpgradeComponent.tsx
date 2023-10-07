@@ -27,7 +27,7 @@ const SalvageUpgradeComponent = ({ upgrade }) => {
       <Text style={styles.descriptionText}>{upgrade.description}</Text>
       <Text style={styles.currentMultiplierText}>Current Bonus: x{formatNumber((upgrade.modifier ** upgrade.level).toFixed(2))}</Text>
       <TouchableOpacity
-        onPress={handleCraftProject}
+        onPress={handleBuyUpgrade}
         style={styles.buyButton}
       >
         <Text style={styles.buyButtonText}>Upgrade {upgrade.name} ${formatNumber(100)}</Text>

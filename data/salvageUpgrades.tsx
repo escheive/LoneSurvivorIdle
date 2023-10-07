@@ -1,4 +1,4 @@
-const salvageUpgrades = [
+export const salvageUpgrades = [
   {
     id: 0,
     name: 'Better Scrapping',
@@ -87,4 +87,4 @@ const salvageUpgrades = [
     maxLevel: 100,
     modifier: 1.05,
   },
-]
+];
