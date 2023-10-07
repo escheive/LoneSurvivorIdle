@@ -14,7 +14,6 @@ const MissionsScreen = () => {
     return (
       <ScreenWithBackButton>
         <ScrollView>
-            <Text>MissionsScreen</Text>
             {missionsKeys.map((mission) => (
                 <MissionComponent
                     key={mission}

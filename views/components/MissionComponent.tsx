@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useAppSelector, useAppDispatch } from '../../utils/hooks';
 
@@ -27,14 +27,19 @@ const MissionComponent = ({ missions, missionKey }) => {
   const formattedRemainingTime = formatTime(remainingTime);
 
   return (
-    <View style={styles.generatorContainer}>
-      <Text>{mission.name} LvL{formatNumber(mission.level)}</Text>
+    <View style={styles.container}>
+      <Text style={styles.missionName}>{mission.name} LvL{formatNumber(mission.level)}</Text>
       {mission.startTime !== null ? (
       <>
-        <Text>{formattedRemainingTime}</Text>
+        <Text style={styles.remainingMissionTime}>{formattedRemainingTime}</Text>
       </>
       ) : null}
-      <Button onPress={handleMissionStart} title={`Start Mission`}/>
+      <TouchableOpacity
+        onPress={handleMissionStart}
+        style={styles.buyButton}
+      >
+        <Text style={styles.buyButtonText}>Start Mission</Text>
+      </TouchableOpacity>
     </View>
 
   )
@@ -42,11 +47,40 @@ const MissionComponent = ({ missions, missionKey }) => {
 }
 
 const styles = StyleSheet.create({
-  generatorContainer: {
+  container: {
     width: '100%',
     marginTop: 16,
     justifyContent: 'center'
-  }
+  },
+  missionName: {
+    fontSize: 16,
+    color: 'white',
+  },
+  remainingMissionTime: {
+    fontSize: 16,
+    color: 'white',
+  },
+  buyButton: {
+    backgroundColor: 'rgba(201, 67, 61, 0.7)',
+    padding: 10,
+    ...Platform.select({
+        android: {
+            elevation: 1,
+        },
+        ios: {
+            shadowColor: 'black',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.2,
+            shadowRadius: 4,
+        },
+    })
+  },
+  buyButtonText: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: 'white',
+    fontWeight: 'bold'
+  },
 })
 
 export default MissionComponent;
