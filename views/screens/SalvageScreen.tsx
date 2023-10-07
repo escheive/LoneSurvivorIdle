@@ -7,15 +7,16 @@ import { selectSalvage, incrementSalvageUpgrade } from '../../store/reducers/sal
 import SalvageUpgradeComponent from '../components/SalvageUpgradeComponent';
 import ScreenWithBackButton from '../components/ScreenWithBackButton';
 
+import { calculateSalvagedTechEarned } from '../../utils/gameLogic';
+
 const SalvageScreen = () => {
   const dispatch = useAppDispatch();
   const salvageUpgrades = useAppSelector(selectSalvage);
-  console.log(salvageUpgrades)
 
   return (
     <ScreenWithBackButton>
+      <Text></Text>
       <ScrollView>
-        <Text>Salvage Screen</Text>
         {salvageUpgrades.map((upgrade) => (
           <SalvageUpgradeComponent upgrade={upgrade} />
         ))}

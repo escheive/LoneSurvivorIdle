@@ -48,3 +48,11 @@ export const calculateOfflineGains = (updatedGeneratorsRef, updatedCraftingProje
     };
     return totalOfflineGains;
 };
+
+export function calculateSalvagedTechEarned(totalScraps: number) {
+  const base = 10;
+
+  const salvagedTechEarned = Math.log10(totalScraps) / Math.log10(base)
+
+  return Math.max(0, Math.floor(salvagedTechEarned))
+}
