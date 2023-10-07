@@ -2,15 +2,21 @@ import { incrementCurrency } from '../store/reducers/currencySlice';
 import { incrementGenerator } from '../store/reducers/generatorsSlice';
 import { formatNumber } from './helperFunctions';
 
-export const handleGeneratorIncrements = (updatedGeneratorsRef, updatedCraftingProjectsRef, dispatch) => {
+export const handleGeneratorIncrements = (updatedGeneratorsRef, updatedCraftingProjectsRef, salvageUpgrades, dispatch) => {
     let generator;
     let applicableCraftingProject;
+    let applicableSalvageUpgrade;
 
     for (let i=0; i < updatedGeneratorsRef.current.length; i++) {
         generator = updatedGeneratorsRef.current[i];
         applicableCraftingProject = updatedCraftingProjectsRef.current[i];
+        applicableSalvageUpgrade = salvageUpgrades[i];
 
-        const totalGeneratorProduction = Math.floor(generator.totalQuantity * Math.max(1.1 ** applicableCraftingProject.totalCrafted, 1));
+        const totalGeneratorProduction = Math.floor(
+          generator.totalQuantity *
+          Math.max(1.1 ** applicableCraftingProject.totalCrafted, 1) *
+          Math.max(applicableSalvageUpgrade.modifier ** applicableSalvageUpgrade.level, 1)
+        );
 
         if (generator.totalQuantity > 0) {
             if (generator.id === 0) {

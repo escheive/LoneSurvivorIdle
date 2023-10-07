@@ -11,6 +11,7 @@ import { selectCrafting } from '../../../store/reducers/craftingSlice';
 import { incrementMission, selectMissions, selectStartedMissions } from '../../../store/reducers/missionsSlice';
 import { selectCurrency, incrementCurrency } from '../../../store/reducers/currencySlice';
 import { selectPlayerData, setLastOnlineTimestamp } from '../../../store/reducers/playerDataSlice';
+import { selectSalvage } from '../../../store/reducers/salvageSlice';
 
 import { handleGeneratorIncrements, calculateOfflineGains } from '../../../utils/gameLogic';
 
@@ -30,6 +31,7 @@ const Timer = () => {
   const currentStartedMissionsRef = useRef(startedMissions);
   const money = useAppSelector(selectCurrency);
   const playerData = useAppSelector(selectPlayerData);
+  const salvageUpgrades = useAppSelector(selectSalvage);
   const [showPopup, setShowPopup] = useState(true);
   const [offlineGains, setOfflineGains] = useState([]);
   const [completedMissionsWhileOffline, setCompletedMissionsWhileOffline] = useState(0);
@@ -52,7 +54,7 @@ const Timer = () => {
       step: 1000,
       maxUpdates: 300,
       onUpdate: (currentTime) => {
-        handleGeneratorIncrements(updatedGeneratorsRef, updatedCraftingProjectsRef, dispatch)
+        handleGeneratorIncrements(updatedGeneratorsRef, updatedCraftingProjectsRef, salvageUpgrades, dispatch)
         dispatch(setLastOnlineTimestamp({ currentTime: currentTime }));
         handleMissionsProgress(currentTime);
 //           dispatch(resetCurrency());
