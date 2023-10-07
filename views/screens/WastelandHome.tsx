@@ -16,6 +16,12 @@ const WastelandHome = ({ navigation }) => {
       >
         <Text style={styles.buyButtonText}>Missions</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Salvage')}
+        style={styles.buyButton}
+      >
+        <Text style={styles.buyButtonText}>Salvage</Text>
+      </TouchableOpacity>
     </View>
   );
 }

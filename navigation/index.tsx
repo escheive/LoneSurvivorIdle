@@ -11,42 +11,42 @@ const BottomTab = createBottomTabNavigator();
 
 const Navigation = () => {
 
-    return (
-        <View style={styles.navigationContainer}>
-            <NavigationContainer>
-                <Header />
-                <BottomTab.Navigator
-                    screenOptions={{
-                        headerShown: false,
-                        tabBarInactiveTintColor: 'white',
-                        tabBarActiveTintColor: 'red',
-                        tabBarStyle: {
-                          backgroundColor: 'rgba(44, 62, 80, 0.9)',
-                        },
-                        tabBarLabelStyle: {
-                          fontSize: 16,
-                        },
-                     }}
-                >
-                    <BottomTab.Screen
-                        name="Generators"
-                        component={GeneratorsScreen}
-                    />
-                    <BottomTab.Screen
-                        name="Wasteland"
-                        component={WastelandNavigator}
-                    />
-                </BottomTab.Navigator>
-            </NavigationContainer>
-        </View>
-    )
+  return (
+    <View style={styles.navigationContainer}>
+      <NavigationContainer>
+        <Header />
+        <BottomTab.Navigator
+          screenOptions={{
+            headerShown: false,
+            tabBarInactiveTintColor: 'white',
+            tabBarActiveTintColor: 'red',
+            tabBarStyle: {
+              backgroundColor: 'rgba(44, 62, 80, 0.9)',
+            },
+            tabBarLabelStyle: {
+              fontSize: 16,
+            },
+          }}
+        >
+          <BottomTab.Screen
+            name="Generators"
+            component={GeneratorsScreen}
+          />
+          <BottomTab.Screen
+            name="Wasteland"
+            component={WastelandNavigator}
+          />
+        </BottomTab.Navigator>
+      </NavigationContainer>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
-    navigationContainer: {
-        flex: 1,
-        backgroundColor: 'rgba(44, 62, 80, 0.9)',
-    }
+  navigationContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(44, 62, 80, 0.9)',
+  }
 })
 
 export default Navigation;
