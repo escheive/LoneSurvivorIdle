@@ -17,6 +17,7 @@ import currencySlice from './reducers/currencySlice';
 import generatorsSlice from './reducers/generatorsSlice';
 import craftingSlice from './reducers/craftingSlice';
 import missionsSlice from './reducers/missionsSlice';
+import salvageSlice from './reducers/salvageSlice';
 
 const rootReducer = combineReducers({
     playerData: playerDataSlice,
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
     generators: generatorsSlice,
     crafting: craftingSlice,
     missions: missionsSlice,
+    salvage: salvageSlice,
 })
 
 const persistConfig = {
