@@ -6,7 +6,7 @@ const ScreenWithBackButton = ({ children }) => {
   const navigation = useNavigation();
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       {children}
       <TouchableOpacity
         onPress={() => navigation.goBack()}
@@ -19,6 +19,10 @@ const ScreenWithBackButton = ({ children }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'rgba(44, 62, 80, 0.9)',
+  },
   buyButton: {
     backgroundColor: 'rgba(201, 67, 61, 0.7)',
     padding: 10,
