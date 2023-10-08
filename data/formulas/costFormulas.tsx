@@ -1,51 +1,51 @@
 export const generatorCosts: Record<string, (purchasedGenerators: number) => number> = {
   0: (purchasedGenerators) =>
-    3 * (1.065 + (0.004 * purchasedGenerators)) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 999, 0) / 1000)),
+    (1 + 0.3 * purchasedGenerators) ** (1 + purchasedGenerators * 0.15),
   1: (purchasedGenerators) =>
-    2e3 * (2.9 + ( 0.3 * purchasedGenerators)) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 199, 0) / 500)),
+    100 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
   2: (purchasedGenerators) =>
-    1e8 * (20 + (10 * purchasedGenerators)) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 99, 0 ) / (1000 / 3))),
+    1e4 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
   3: (purchasedGenerators) =>
-    4e18 * (50 + (30 * purchasedGenerators)) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 74, 0) / 200)),
+    1e6 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
   4: (purchasedGenerators) =>
-    5e46 * (220 + 80 * purchasedGenerators) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 49, 0) / 200)),
+    1e9 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
   5: (purchasedGenerators) =>
-    6e200 * (6e5 + 6e5 * purchasedGenerators) ** (purchasedGenerators * (1 + purchasedGenerators / (500 / 3))),
+    1e12 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
   6: (purchasedGenerators) =>
-    47e500 * (7e7 + 7e7 * purchasedGenerators) ** (purchasedGenerators * (1 + purchasedGenerators / 50)),
+    1e15 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
   7: (purchasedGenerators) =>
-    4e18 * (50 + (30 * purchasedGenerators)) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 74, 0) / 200)),
+    1e18 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
   8: (purchasedGenerators) =>
-    4e18 * (50 + (30 * purchasedGenerators)) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 74, 0) / 200)),
+    1e21 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
   9: (purchasedGenerators) =>
-    4e18 * (50 + (30 * purchasedGenerators)) ** (purchasedGenerators * (1 + Math.max(purchasedGenerators - 74, 0) / 200)),
+    1e24 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
 }
 
 export const craftingCosts: Record<string, (purchasedProjects: number) => number> = {
     0: (purchasedProjects) =>
-      5e2 * (1.1 + (0.1 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 5, 0) / 500 )),
+      500 * (1 + 0.3 * purchasedProjects) ** (0.6 + purchasedProjects * 0.4),
     1: (purchasedProjects) =>
-        5e3 * (2.9 + ( 0.3 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 199, 0) / 500)),
+      5e3 * (1 + 0.4 * purchasedProjects) ** (0.6 + purchasedProjects * 0.4),
     2: (purchasedProjects) =>
-      5e4 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
+      5e4 * (1 + 0.5 * purchasedProjects) ** (0.6 + purchasedProjects * 0.4),
     3: (purchasedProjects) =>
-      5e7 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
+      5e7 * (1 + 0.6 * purchasedProjects) ** (0.6 + purchasedProjects * 0.4),
     4: (purchasedProjects) =>
-      5e10 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
+      5e10 * (1 + 0.7 * purchasedProjects) ** (0.6 + purchasedProjects * 0.4),
     5: (purchasedProjects) =>
-      5e13 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
+      5e13 * (1 + 0.8 * purchasedProjects) ** (0.6 + purchasedProjects * 0.4),
     6: (purchasedProjects) =>
-      5e16 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
+      5e16 * (1 + 0.9 * purchasedProjects) ** (0.6 + purchasedProjects * 0.4),
     7: (purchasedProjects) =>
-      5e19 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
+      5e19 * (1 + 1 * purchasedProjects) ** (0.6 + purchasedProjects * 0.4),
     8: (purchasedProjects) =>
-      5e22 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
+      5e22 * (1 + 1.1 * purchasedProjects) ** (0.6 + purchasedProjects * 0.4),
     9: (purchasedProjects) =>
-      5e25 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
+      5e25 * (1 + 1.2 * purchasedProjects) ** (0.6 + purchasedProjects * 0.4),
     10: (purchasedProjects) =>
-      5e28 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
+      5e28 * (1 + 1.3 * purchasedProjects) ** (0.6 + purchasedProjects * 0.4),
     11: (purchasedProjects) =>
-      5e31 * (20 + (10 * purchasedProjects)) ** (purchasedProjects * (1 + Math.max(purchasedProjects - 99, 0 ) / (1000 / 3))),
+      5e31 * (1 + 1.4 * purchasedProjects) ** (0.6 + purchasedProjects * 0.4),
 }
 
 export const salvageUpgradesCost: Record<string, (upgradeLevel: number) => number> = {

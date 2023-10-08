@@ -17,8 +17,8 @@ const CraftingProject = ({ craftingProjectId, projectCost }) => {
 
   const handleCraftProject = () => {
 
-    if (project && currency.money >= upgradeCost) {
-      dispatch(incrementCurrency({ currencyType: 'money', value: -upgradeCost }))
+    if (project && currency.scraps >= upgradeCost) {
+      dispatch(incrementCurrency({ currencyType: 'scraps', value: -upgradeCost }))
       dispatch(incrementCraftingProject({ craftingProjectId: craftingProjectId, value: 1 }))
     }
   }

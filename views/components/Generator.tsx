@@ -18,8 +18,8 @@ const Generator = ({ generatorId, generatorCost }) => {
     const upgradeCost = useMemo(() => generatorCost(generator.purchasedQuantity), [generator.purchasedQuantity]);
 
     const handleBuyGenerator = () => {
-        if (generator && currency.money >= upgradeCost) {
-            dispatch(incrementCurrency({ currencyType: 'money', value: -upgradeCost}))
+        if (generator && currency.scraps >= upgradeCost) {
+            dispatch(incrementCurrency({ currencyType: 'scraps', value: -upgradeCost}))
             dispatch(buyGenerator({ generatorId: generator.id, value: 1 }));
         }
     }

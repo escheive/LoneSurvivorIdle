@@ -15,7 +15,7 @@ const CurrencyHeader = () => {
 
   return (
     <View style={styles.currencyContainer}>
-      <Text style={styles.currencyText}>${formatNumber(currency.money.toFixed(2))}</Text>
+      <Text style={styles.currencyText}>${formatNumber(currency.scraps.toFixed(2))}</Text>
     </View>
   )
 }

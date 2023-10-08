@@ -20,7 +20,7 @@ export const handleGeneratorIncrements = (updatedGeneratorsRef, updatedCraftingP
 
         if (generator.totalQuantity > 0) {
             if (generator.id === 0) {
-                dispatch(incrementCurrency({ currencyType: 'money', value: totalGeneratorProduction }))
+                dispatch(incrementCurrency({ currencyType: 'scraps', value: totalGeneratorProduction }))
             } else {
                 dispatch(incrementGenerator({ generatorId: i - 1, value: totalGeneratorProduction }))
             }
@@ -46,7 +46,7 @@ export const calculateOfflineGains = (updatedGeneratorsRef, updatedCraftingProje
 
         if (generator.totalQuantity > 0) {
             if (generator.id === 0) {
-                dispatch(incrementCurrency({ currencyType: 'money', value: totalGeneratorProduction }))
+                dispatch(incrementCurrency({ currencyType: 'scraps', value: totalGeneratorProduction }))
             } else {
                 dispatch(incrementGenerator({ generatorId: i - 1, value: totalGeneratorProduction }))
             }

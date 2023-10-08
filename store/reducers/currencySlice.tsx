@@ -3,14 +3,13 @@ import { RootState } from '../index';
 
 // Defining types for each currency in our currencySlice state
 interface CurrencyState {
-  money: number,
-  shards: number,
-  prestigePoints: number
+  scraps: number,
+  salvagedTech: number
 }
 
 // Initial state for the currencySlice
 const initialState: CurrencyState = {
-  money: 3,
+  scraps: 1,
   salvagedTech: 0
 }
 

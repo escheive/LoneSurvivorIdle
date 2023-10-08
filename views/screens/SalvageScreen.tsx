@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 import { selectSalvage, incrementSalvageUpgrade } from '../../store/reducers/salvageSlice';
 import { selectCurrency, incrementCurrency, resetCurrency } from '../../store/reducers/currencySlice';
+import { resetCrafting } from '../../store/reducers/craftingSlice';
 import { selectGenerators, resetGenerators } from '../../store/reducers/generatorsSlice';
 
 import SalvageUpgradeComponent from '../components/SalvageUpgradeComponent';
@@ -18,7 +19,7 @@ const SalvageScreen = () => {
   const salvageUpgrades = useAppSelector(selectSalvage);
   const currency = useAppSelector(selectCurrency);
   const generators = useAppSelector(selectGenerators);
-  const salvagedTechGainedOnReset = useMemo(() => calculateSalvagedTechEarned(currency.money), []);
+  const salvagedTechGainedOnReset = useMemo(() => calculateSalvagedTechEarned(currency.scraps), []);
   const [showBanner, setShowBanner] = useState(false);
 
   const performSalvageReset = () => {
@@ -35,6 +36,7 @@ const SalvageScreen = () => {
       }, 1500);
     } else {
       dispatch(resetCurrency());
+      dispatch(resetCrafting());
       dispatch(incrementCurrency({ currencyType: 'salvagedTech', value: salvagedTechGainedOnReset }))
       dispatch(resetGenerators());
     }

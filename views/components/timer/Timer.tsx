@@ -29,7 +29,7 @@ const Timer = () => {
   const missions = useAppSelector(selectMissions);
   const startedMissions = useAppSelector(selectStartedMissions);
   const currentStartedMissionsRef = useRef(startedMissions);
-  const money = useAppSelector(selectCurrency);
+  const currency = useAppSelector(selectCurrency);
   const playerData = useAppSelector(selectPlayerData);
   const salvageUpgrades = useAppSelector(selectSalvage);
   const [showPopup, setShowPopup] = useState(true);
