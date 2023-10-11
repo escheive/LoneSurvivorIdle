@@ -3,7 +3,6 @@ import { Platform, View, Text, StyleSheet, Button, TouchableOpacity } from 'reac
 import { useSelector, useDispatch } from 'react-redux';
 import { useAppSelector, useAppDispatch } from '../../utils/hooks';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import LinearGradient from 'react-native-linear-gradient';
 
 import { selectGenerators, buyGenerator } from '../../store/reducers/generatorsSlice';
 import { selectCurrency, incrementCurrency } from '../../store/reducers/currencySlice';
@@ -25,9 +24,7 @@ const Generator = ({ generatorId, generatorCost }) => {
     }
 
   return (
-    <LinearGradient style={styles.generatorContainer}
-        colors={['rgba(255, 255, 255, 0.1)', 'rgba(0, 0, 0, 0.1)']}
-    >
+    <View style={styles.generatorContainer}>
       <Text style={styles.nameText}>{generator.name} x{formatNumber(generator.totalQuantity)}</Text>
       <TouchableOpacity
         onPress={handleBuyGenerator}
@@ -35,7 +32,7 @@ const Generator = ({ generatorId, generatorCost }) => {
       >
         <Text style={styles.buyButtonText}>Buy {generator.name} ${formatNumber(upgradeCost)}</Text>
       </TouchableOpacity>
-    </LinearGradient>
+    </View>
   )
 
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useAppDispatch, useAppSelector } from '../../../utils/hooks';
 import { View, Text, StyleSheet } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 
 import { selectCurrency } from '../../../store/reducers/currencySlice';
 import { setCurrency } from '../../../store/reducers/currencyReducer';
