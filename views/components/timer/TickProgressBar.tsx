@@ -1,12 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Animated, {
-  useSharedValue,
   useAnimatedStyle,
-  withTiming,
-  interpolate,
+  interpolate
 } from 'react-native-reanimated';
-import LinearGradient from 'react-native-linear-gradient';
 
 const TickProgressBar = ({ progress }) => {
 

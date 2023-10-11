@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { StrictMode } from 'react';
 import { useAppDispatch, useAppSelector } from './utils/hooks';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -27,7 +27,9 @@ function App(): JSX.Element {
 // dispatch(resetSalvage());
 
   return (
+  <StrictMode>
     <Navigation />
+  </StrictMode>
   );
 }
 

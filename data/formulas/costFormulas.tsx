@@ -1,24 +1,24 @@
 export const generatorCosts: Record<string, (purchasedGenerators: number) => number> = {
   0: (purchasedGenerators) =>
-    (1 + 0.3 * purchasedGenerators) ** (1 + purchasedGenerators * 0.15),
+    (3 ** (purchasedGenerators * 0.40)),
   1: (purchasedGenerators) =>
-    100 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
+    100 * (6 ** (purchasedGenerators * 0.40)),
   2: (purchasedGenerators) =>
-    1e4 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
+    1e4 * (9 ** (purchasedGenerators * 0.40)),
   3: (purchasedGenerators) =>
-    1e6 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
+    1e6 * (12 ** (purchasedGenerators * 0.4)),
   4: (purchasedGenerators) =>
-    1e9 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
+    1e9 * (15 ** (purchasedGenerators * 0.4)),
   5: (purchasedGenerators) =>
-    1e12 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
+    1e12 * (18 ** (purchasedGenerators * 0.4)),
   6: (purchasedGenerators) =>
-    1e15 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
+    1e15 * (21 ** (purchasedGenerators * 0.4)),
   7: (purchasedGenerators) =>
-    1e18 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
+    1e18 * (24 ** (purchasedGenerators * 0.4)),
   8: (purchasedGenerators) =>
-    1e21 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
+    1e21 * (27 ** (purchasedGenerators * 0.4)),
   9: (purchasedGenerators) =>
-    1e24 * ( 10 * purchasedGenerators) ** (purchasedGenerators * 0.2),
+    1e24 * (30 ** (purchasedGenerators * 0.4)),
 }
 
 export const craftingCosts: Record<string, (purchasedProjects: number) => number> = {
