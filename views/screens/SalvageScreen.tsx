@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Platform, ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 import { selectSalvage, incrementSalvageUpgrade } from '../../store/reducers/salvageSlice';

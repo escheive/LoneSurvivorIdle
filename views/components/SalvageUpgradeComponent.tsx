@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext, useMemo } from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import { Platform, View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useAppSelector, useAppDispatch } from '../../utils/hooks';
 
