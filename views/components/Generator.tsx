@@ -74,6 +74,9 @@ const styles = StyleSheet.create({
             shadowOpacity: 0.2,
             shadowRadius: 4,
         },
+        web: {
+          boxShadow: '0px 2px 3px rgba(0, 0, 0, 0.3)'
+        },
     })
   },
   buyButtonText: {

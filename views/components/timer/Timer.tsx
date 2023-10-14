@@ -95,7 +95,10 @@ const Timer = () => {
 
             // Calculate all gains based on the offline duration
             const totalOfflineGains = calculateOfflineGains(updatedGeneratorsRef, updatedCraftingProjectsRef, dispatch, offlineTicks);
-            setOfflineGains(totalOfflineGains)
+
+            // Set the offline gains and progress accordingly
+            setOfflineGains(totalOfflineGains);
+            setProgress(0);
         } else {
             dispatch(setLastOnlineTimestamp({ currentTime: Date.now()/1000}));
         }

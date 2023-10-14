@@ -49,7 +49,6 @@ const SalvageScreen = () => {
       ) : null}
       <Text style={styles.currentSalvagedTechText}>Salvaged Tech: {currency.salvagedTech}</Text>
       <Text style={styles.salvagedTechGainedOnResetText}>Salvaged Tech gained on reset: {formatNumber(salvagedTechGainedOnReset)}</Text>
-{/*       <Text style={styles.salvagedTechGainedOnResetText}>Salvaged Tech gained on reset: {formatNumber(calculateSalvagedTechEarned(currency.money))}</Text> */}
       <ScrollView>
         {salvageUpgrades.map((upgrade) => (
           <SalvageUpgradeComponent upgrade={upgrade} key={upgrade.id} />
@@ -88,6 +87,9 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         shadowRadius: 4,
+      },
+      web: {
+        boxShadow: '0px 2px 3px rgba(0, 0, 0, 0.3)'
       },
     })
   },
